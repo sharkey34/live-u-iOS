@@ -9,15 +9,21 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var mainBackground: UIImageView!
+    @IBOutlet weak var liveIcon: UIImageView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        mainBackground.image = #imageLiteral(resourceName: "MainBackground")
+        liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
