@@ -40,9 +40,14 @@ class ViewController: UIViewController {
 
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             
-            // TODO: get the user if one is found or issue alert if user is invalid.
+            if let user = result{
+                print("user \(user) found")
+            } else {
+                print("No user was found.")
+            }
+
         }
-    
+
         
         
     }

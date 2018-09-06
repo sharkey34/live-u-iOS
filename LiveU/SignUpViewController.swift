@@ -5,6 +5,8 @@
 //  Created by Eric Sharkey on 9/6/18.
 //  Copyright © 2018 Eric Sharkey. All rights reserved.
 //
+// Exclamation icon from by Pixel Buddha from www.flaticon.com
+
 
 import UIKit
 import FirebaseDatabase
@@ -14,11 +16,14 @@ class SignUpViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailExclamation: UIImageView!
     
+    @IBOutlet weak var passwordExclamation: UIImageView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         let gradiantLayer = CAGradientLayer()
         gradiantLayer.colors = [UIColor.white.cgColor, UIColor.lightGray.cgColor]
@@ -51,7 +56,7 @@ class SignUpViewController: UIViewController {
                             print("Valid email found.")
                             validEmail = true
                         } else {
-                            print("No valid email was found.")
+                            emailExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
                             validEmail = false
                         }
         
@@ -59,14 +64,15 @@ class SignUpViewController: UIViewController {
                             print("Valid Password entered.")
                             validPassword = true
                         } else {
-                            print("Your password must be 8 characters or longer.")
+                            passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
                             validPassword = false
                         }
         
                         if validPassword == true && validEmail == true{
                             
+                            print("Both are valid.")
                             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                                //TODO
+                                
                             }
                         }
         
@@ -76,6 +82,8 @@ class SignUpViewController: UIViewController {
         
                 } else {
                     print("Please don't leave Fields blank.")
+                    passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
+                    emailExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
                 }
         
         
