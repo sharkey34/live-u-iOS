@@ -17,8 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var passwordImageView: UIImageView!
     
-
+    @IBOutlet weak var emailImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

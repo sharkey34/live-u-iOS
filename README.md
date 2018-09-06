@@ -2,35 +2,22 @@
 
 Live U is an application that connects local Artists and Venues. The purpose of the application is to reduce the time and money associated with finding quality local acts to play at the Venue.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+Xcode 9+
+Mac OS X 10.13+
+iOS 9.0+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Step 1. 
+* Download Xcode.
+Step 2.
+* Download the project.
+Step 3.
+* Open the LiveU.xcodeproj file.
+Step 4.
+* Run.
 
 ## Running the tests
 
@@ -40,17 +27,10 @@ Explain how to run the automated tests for this system
 
 Explain what these tests test and why
 
-```
-Give an example
-```
-
 ### And coding style tests
 
 Explain what these tests test and why
 
-```
-Give an example
-```
 
 ## Deployment
 
@@ -76,7 +56,5 @@ Add additional notes about how to deploy this on a live system
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
 
