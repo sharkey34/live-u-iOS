@@ -10,14 +10,10 @@ iOS 9.0+
 
 ### Installing
 
-Step 1. 
-Download Xcode.
-Step 2.
-Download the project.
-Step 3.
-Open the LiveU.xcodeproj file.
-Step 4.
-Run.
+1. Download Xcode.
+2. Download the project.
+3. Open the LiveU.xcodeproj file.
+4. Run.
 
 ## Running the tests
 
