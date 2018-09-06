@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class ViewController: UIViewController {
     var ref: DatabaseReference!
@@ -32,7 +33,18 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        
 
-
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            
+            // TODO: get the user if one is found or issue alert if user is invalid.
+        }
+    
+        
+        
+    }
 }
 
