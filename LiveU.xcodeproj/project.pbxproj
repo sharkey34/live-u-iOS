@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A6639882141707100914A02 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6639872141707100914A02 /* SignUpViewController.swift */; };
 		4A6F71B9213F66B4009C9B1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */; };
 		4A6F71BB213F66B4009C9B1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F71BA213F66B4009C9B1C /* ViewController.swift */; };
 		4A6F71BE213F66B4009C9B1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F71BC213F66B4009C9B1C /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		0CE2E35B306BF2749471EE1B /* Pods_LiveU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5181767CA9DCD45F80F7D3 /* Pods-LiveU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveU.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveU/Pods-LiveU.release.xcconfig"; sourceTree = "<group>"; };
+		4A6639872141707100914A02 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4A6F71B5213F66B4009C9B1C /* LiveU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A6F71BA213F66B4009C9B1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */,
 				4A6F71BA213F66B4009C9B1C /* ViewController.swift */,
+				4A6639872141707100914A02 /* SignUpViewController.swift */,
 				4A6F71BC213F66B4009C9B1C /* Main.storyboard */,
 				4A6F71BF213F66B4009C9B1C /* Assets.xcassets */,
 				4A6F71C1213F66B4009C9B1C /* LaunchScreen.storyboard */,
@@ -166,15 +169,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-LiveU-checkManifestLockResult.txt",
 			);
@@ -188,8 +187,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LiveU/Pods-LiveU-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -198,8 +195,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -218,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A6639882141707100914A02 /* SignUpViewController.swift in Sources */,
 				4A6F71BB213F66B4009C9B1C /* ViewController.swift in Sources */,
 				4A6F71B9213F66B4009C9B1C /* AppDelegate.swift in Sources */,
 			);
