@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     var ref: DatabaseReference!
     @IBOutlet weak var mainBackground: UIImageView!
     @IBOutlet weak var liveIcon: UIImageView!
+    @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
 
     override func viewDidLoad() {
@@ -20,6 +23,7 @@ class ViewController: UIViewController {
         
         ref = Database.database().reference()
         
+        logInButton.layer.cornerRadius = 0.5
         mainBackground.image = #imageLiteral(resourceName: "MainBackground")
         liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
         

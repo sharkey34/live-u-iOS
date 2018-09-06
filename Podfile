@@ -8,4 +8,5 @@ target 'LiveU' do
   # Pods for LiveU
   pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'Firebase/Auth'
 end
