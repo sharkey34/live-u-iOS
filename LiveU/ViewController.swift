@@ -45,8 +45,13 @@ class ViewController: UIViewController {
             if let user = result{
                 print("user \(user) found")
                 
+                // TODO: Create a user from the found users data.
+                   // Check if business or Artist
+                
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
+                
+                self.performSegue(withIdentifier: "logInSegue", sender: sender)
                 
             } else {
                 if let err = error{

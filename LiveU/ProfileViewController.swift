@@ -5,11 +5,18 @@
 //  Created by Eric Sharkey on 9/7/18.
 //  Copyright © 2018 Eric Sharkey. All rights reserved.
 //
+// Search icon by freepik from www.flaticon.com
+// Add icon by dimitri13 from www.flaticon.com
+// Profile icon by Gregor Cresnar from www.flaticon.com
+
 
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    @IBOutlet weak var backGroundView: UIView!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var aboutView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -81,6 +81,11 @@ class SignUpViewController: UIViewController {
                             self.emailTextField.text = nil
                             self.passwordTextField.text = nil
                             
+                            // TODO: Save all input information to a User object.
+                            // Check if business or Artist
+                            
+                            self.performSegue(withIdentifier: "signUpSegue", sender: sender)
+                            
                         } else {
                             if let err = error{
                                 print(err.localizedDescription)

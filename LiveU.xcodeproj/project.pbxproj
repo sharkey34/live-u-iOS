@@ -73,12 +73,12 @@
 				4A6F71BA213F66B4009C9B1C /* ViewController.swift */,
 				4A6639872141707100914A02 /* SignUpViewController.swift */,
 				4A663989214314A700914A02 /* ProfileViewController.swift */,
+				4A66398D214315A500914A02 /* User.swift */,
 				4A6F71BC213F66B4009C9B1C /* Main.storyboard */,
 				4A6F71BF213F66B4009C9B1C /* Assets.xcassets */,
 				4A6F71C1213F66B4009C9B1C /* LaunchScreen.storyboard */,
 				4A6F71C4213F66B4009C9B1C /* Info.plist */,
 				4AA3178A21405AB0007FDBD8 /* GoogleService-Info.plist */,
-				4A66398D214315A500914A02 /* User.swift */,
 			);
 			path = LiveU;
 			sourceTree = "<group>";
