@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ArtistProfileViewController.swift
 //  LiveU
 //
 //  Created by Eric Sharkey on 9/7/18.
@@ -12,10 +12,15 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ArtistProfileViewController: UIViewController {
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var aboutView: UIView!
+    @IBOutlet weak var artistNameLabel: UILabel!
+    @IBOutlet weak var schoolLabelName: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var aboutTextField: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

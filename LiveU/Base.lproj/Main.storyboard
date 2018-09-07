@@ -113,6 +113,21 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Aao-dX-13N">
+            <objects>
+                <viewController id="5C7-EX-gtr" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1fo-oc-hep">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="FQo-yf-pzM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9FX-hn-7R1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1207" y="277"/>
+        </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="QY6-SV-xkm">
             <objects>
@@ -188,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="730.88455772113946"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Artist Profile View Controller-->
         <scene sceneID="AQb-Ra-tly">
             <objects>
-                <viewController id="KNp-Oc-jwq" customClass="ProfileViewController" customModule="LiveU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KNp-Oc-jwq" customClass="ArtistProfileViewController" customModule="LiveU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bGE-b3-IjD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -204,7 +219,30 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy8-4a-vFp">
                                         <rect key="frame" x="15" y="116" width="345" height="220"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erF-nb-yOD">
+                                                <rect key="frame" x="139" y="8" width="66" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aCF-US-MjG">
+                                                <rect key="frame" x="5" y="43" width="335" height="172"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="erF-nb-yOD" firstAttribute="top" secondItem="Hy8-4a-vFp" secondAttribute="top" constant="8" id="ADJ-8c-bZP"/>
+                                            <constraint firstItem="aCF-US-MjG" firstAttribute="top" secondItem="erF-nb-yOD" secondAttribute="bottom" constant="5" id="Dwu-dp-joy"/>
+                                            <constraint firstItem="aCF-US-MjG" firstAttribute="leading" secondItem="Hy8-4a-vFp" secondAttribute="leading" constant="5" id="Fbb-nW-FXh"/>
+                                            <constraint firstAttribute="bottom" secondItem="aCF-US-MjG" secondAttribute="bottom" constant="5" id="GAU-CW-a5q"/>
+                                            <constraint firstItem="erF-nb-yOD" firstAttribute="centerX" secondItem="Hy8-4a-vFp" secondAttribute="centerX" id="j1L-GA-HgN"/>
+                                            <constraint firstAttribute="trailing" secondItem="aCF-US-MjG" secondAttribute="trailing" constant="5" id="rmV-eC-nMX"/>
+                                        </constraints>
                                     </view>
                                     <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crs-9M-nJq">
                                         <rect key="frame" x="0.0" y="351" width="375" height="49"/>
@@ -214,6 +252,34 @@
                                             <tabBarItem systemItem="more" id="vrW-6p-mU3"/>
                                         </items>
                                     </tabBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Maria Snow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZP-ft-c9p">
+                                        <rect key="frame" x="15" y="8" width="151" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full Sail University" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-7X-wjH">
+                                        <rect key="frame" x="15" y="43" width="125" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Winter Park, FL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DT5-Hu-XU7">
+                                        <rect key="frame" x="15" y="63" width="105" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbW-lo-CSJ">
+                                        <rect key="frame" x="15" y="83" width="59" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.691650390625" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.22745098039215686" green="0.80000000000000004" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -242,14 +308,19 @@
                         <viewLayoutGuide key="safeArea" id="hiW-dW-sej"/>
                     </view>
                     <connections>
+                        <outlet property="aboutTextField" destination="aCF-US-MjG" id="lzr-4e-iNd"/>
                         <outlet property="aboutView" destination="Hy8-4a-vFp" id="bYd-VM-VXy"/>
+                        <outlet property="ageLabel" destination="DbW-lo-CSJ" id="0QN-bU-vzd"/>
+                        <outlet property="artistNameLabel" destination="RZP-ft-c9p" id="jW5-gV-PEm"/>
                         <outlet property="backGroundView" destination="Zlq-oh-BT0" id="OOd-p7-Rdm"/>
+                        <outlet property="locationLabel" destination="DT5-Hu-XU7" id="BGr-jz-0rP"/>
                         <outlet property="profileImage" destination="gtW-Tw-gz5" id="f5S-41-soR"/>
+                        <outlet property="schoolLabelName" destination="s1b-7X-wjH" id="uo9-QJ-OYY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIy-82-V7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1156" y="455.62218890554726"/>
+            <point key="canvasLocation" x="1141.5999999999999" y="1131.1844077961021"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
