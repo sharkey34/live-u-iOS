@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A6639882141707100914A02 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6639872141707100914A02 /* SignUpViewController.swift */; };
+		4A66398A214314A700914A02 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A663989214314A700914A02 /* ProfileViewController.swift */; };
+		4A66398E214315A500914A02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66398D214315A500914A02 /* User.swift */; };
 		4A6F71B9213F66B4009C9B1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */; };
 		4A6F71BB213F66B4009C9B1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F71BA213F66B4009C9B1C /* ViewController.swift */; };
 		4A6F71BE213F66B4009C9B1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F71BC213F66B4009C9B1C /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 		0CE2E35B306BF2749471EE1B /* Pods_LiveU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5181767CA9DCD45F80F7D3 /* Pods-LiveU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveU.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveU/Pods-LiveU.release.xcconfig"; sourceTree = "<group>"; };
 		4A6639872141707100914A02 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4A663989214314A700914A02 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4A66398D214315A500914A02 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A6F71B5213F66B4009C9B1C /* LiveU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A6F71BA213F66B4009C9B1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,11 +72,13 @@
 				4A6F71B8213F66B4009C9B1C /* AppDelegate.swift */,
 				4A6F71BA213F66B4009C9B1C /* ViewController.swift */,
 				4A6639872141707100914A02 /* SignUpViewController.swift */,
+				4A663989214314A700914A02 /* ProfileViewController.swift */,
 				4A6F71BC213F66B4009C9B1C /* Main.storyboard */,
 				4A6F71BF213F66B4009C9B1C /* Assets.xcassets */,
 				4A6F71C1213F66B4009C9B1C /* LaunchScreen.storyboard */,
 				4A6F71C4213F66B4009C9B1C /* Info.plist */,
 				4AA3178A21405AB0007FDBD8 /* GoogleService-Info.plist */,
+				4A66398D214315A500914A02 /* User.swift */,
 			);
 			path = LiveU;
 			sourceTree = "<group>";
@@ -215,6 +221,8 @@
 			files = (
 				4A6639882141707100914A02 /* SignUpViewController.swift in Sources */,
 				4A6F71BB213F66B4009C9B1C /* ViewController.swift in Sources */,
+				4A66398A214314A700914A02 /* ProfileViewController.swift in Sources */,
+				4A66398E214315A500914A02 /* User.swift in Sources */,
 				4A6F71B9213F66B4009C9B1C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

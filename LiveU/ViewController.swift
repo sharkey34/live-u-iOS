@@ -11,14 +11,13 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class ViewController: UIViewController {
-    var ref: DatabaseReference!
+    private var ref: DatabaseReference!
     @IBOutlet weak var mainBackground: UIImageView!
     @IBOutlet weak var liveIcon: UIImageView!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordImageView: UIImageView!
-    
     @IBOutlet weak var emailImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -29,12 +28,13 @@ class ViewController: UIViewController {
         logInButton.layer.cornerRadius = 0.5
         mainBackground.image = #imageLiteral(resourceName: "MainBackground")
         liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
-        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
@@ -44,14 +44,16 @@ class ViewController: UIViewController {
             
             if let user = result{
                 print("user \(user) found")
+                
+                self.emailTextField.text = nil
+                self.passwordTextField.text = nil
+                
             } else {
-                print("No user was found.")
+                if let err = error{
+                    print(err)
+                }
             }
-
         }
-
-        
-        
     }
 }
 
