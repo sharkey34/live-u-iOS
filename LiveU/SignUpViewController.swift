@@ -84,7 +84,7 @@ class SignUpViewController: UIViewController {
                             // TODO: Save all input information to a User object.
                             // Check if business or Artist
                             
-                            self.performSegue(withIdentifier: "signUpSegue", sender: sender)
+                            self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             
                         } else {
                             if let err = error{

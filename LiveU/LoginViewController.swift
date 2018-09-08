@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var emailImageView: UIImageView!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         mainBackground.image = #imageLiteral(resourceName: "MainBackground")
         liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -41,23 +41,24 @@ class LoginViewController: UIViewController {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
         
-
+        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             
             if let user = result{
                 print("user \(user) found")
                 
                 // TODO: Create a user from the found users data.
-                   // Check if business or Artist
+                // Check if business or Artist
                 
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 
-                self.performSegue(withIdentifier: "logInSegue", sender: sender)
+                self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                
                 
             } else {
                 if let err = error{
-                    print(err)
+                    print(err.localizedDescription)
                 }
             }
         }
@@ -65,11 +66,11 @@ class LoginViewController: UIViewController {
     @IBAction func signInPressed(_ sender: UIButton) {
         
         let superView = parent!
-
+        
         self.willMove(toParentViewController: nil)
-
+        
         self.view.removeFromSuperview()
-
+        
         self.removeFromParentViewController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -77,7 +78,7 @@ class LoginViewController: UIViewController {
         let signUp = storyboard.instantiateViewController(withIdentifier: "signUp")
         
         superView.addChildViewController(signUp)
-
+        
         superView.view.addSubview(signUp.view)
         
     }
