@@ -25,14 +25,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        
-        ref = Database.database().reference()
-        
-        logInButton.layer.cornerRadius = 0.5
-        mainBackground.image = #imageLiteral(resourceName: "MainBackground")
-        liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
+        setup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,6 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField.tag {
@@ -85,23 +79,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         default:
             print("Wrong keyboard tag.")
         }
-        
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-    }
     
    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     
     emailTextField.resignFirstResponder()
     passwordTextField.resignFirstResponder()
     
+    }
+    
+    @objc func keyboardChange(note: Notification){
+
+        if note.name == Notification.Name.UIKeyboardWillHide || note.name == Notification.Name.UIKeyboardDidChangeFrame{
+            view.frame.origin.y = 0
+        } else {
+            view.frame.origin.y = -100
+        }
+    }
+    
+    func setup(){
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        ref = Database.database().reference()
+        
+        logInButton.layer.cornerRadius = 0.5
+        mainBackground.image = #imageLiteral(resourceName: "MainBackground")
+        liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
+        
+        
+        subscribeUnsubscribe(bool: true)
+    }
+    
+    func subscribeUnsubscribe(bool: Bool){
+        
+        if bool == true {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        } else {
+            NotificationCenter.default.removeObserver(self)
+        }
     }
 }
 
