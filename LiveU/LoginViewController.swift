@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  LiveU
 //
 //  Created by Eric Sharkey on 9/4/18.
@@ -10,7 +10,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
+    
     private var ref: DatabaseReference!
     @IBOutlet weak var mainBackground: UIImageView!
     @IBOutlet weak var liveIcon: UIImageView!
@@ -20,8 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var emailImageView: UIImageView!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         ref = Database.database().reference()
         
@@ -59,6 +62,16 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    @IBAction func signInPressed(_ sender: UIButton) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let viewController = storyboard.instantiateViewController(withIdentifier: "signUp") as! SignUpViewController
+        
+        self.view.addSubview(viewController.view)
+        
     }
 }
 

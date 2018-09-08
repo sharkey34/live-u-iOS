@@ -106,7 +106,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func CancelPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        
     }
     
     

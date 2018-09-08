@@ -24,8 +24,11 @@ class ArtistProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
-        // Do any additional setup after loading the view.
+        backGroundView.layer.cornerRadius = 0.5
+        aboutView.layer.cornerRadius = 0.5
     }
 
     override func didReceiveMemoryWarning() {
