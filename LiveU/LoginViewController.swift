@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private var ref: DatabaseReference!
     @IBOutlet weak var mainBackground: UIImageView!
@@ -40,10 +40,7 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
-        
-        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            
             if let user = result{
                 print("user \(user) found")
                 
@@ -52,10 +49,7 @@ class LoginViewController: UIViewController {
                 
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
-                
                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
-                
-                
             } else {
                 if let err = error{
                     print(err.localizedDescription)
@@ -66,21 +60,37 @@ class LoginViewController: UIViewController {
     @IBAction func signInPressed(_ sender: UIButton) {
         
         let superView = parent!
-        
         self.willMove(toParentViewController: nil)
-        
         self.view.removeFromSuperview()
-        
         self.removeFromParentViewController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         let signUp = storyboard.instantiateViewController(withIdentifier: "signUp")
-        
         superView.addChildViewController(signUp)
-        
         superView.view.addSubview(signUp.view)
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+    
+   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+    emailTextField.resignFirstResponder()
+    passwordTextField.resignFirstResponder()
+    
     }
 }
 

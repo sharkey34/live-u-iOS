@@ -36,4 +36,6 @@ class MainViewController: UIViewController {
         profileView.profileType = "artist"
         
     }
+    
+    
 }

@@ -106,20 +106,15 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func CancelPressed(_ sender: UIButton) {
+        
         let superView = parent!
-        
         self.willMove(toParentViewController: nil)
-        
         self.view.removeFromSuperview()
-        
         self.removeFromParentViewController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         let logIn = storyboard.instantiateViewController(withIdentifier: "logIn")
-        
         superView.addChildViewController(logIn)
-        
         superView.view.addSubview(logIn.view)
     }
     
