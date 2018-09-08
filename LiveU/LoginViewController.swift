@@ -25,6 +25,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         ref = Database.database().reference()
         
         logInButton.layer.cornerRadius = 0.5
@@ -73,7 +76,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
+        switch textField.tag {
+        case 0:
+            emailTextField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        case 1:
+            passwordTextField.resignFirstResponder()
+        default:
+            print("Wrong keyboard tag.")
+        }
         
         return true
     }
