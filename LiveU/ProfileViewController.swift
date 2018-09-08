@@ -9,7 +9,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    @IBOutlet weak var artistProfileView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

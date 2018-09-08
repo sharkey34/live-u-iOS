@@ -9,15 +9,11 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    @IBOutlet weak var logInContainerView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let logInViewController = storyboard.instantiateViewController(withIdentifier: "logIn") as! LoginViewController
-
-        self.view.addSubview(logInViewController.view)
         
     }
 

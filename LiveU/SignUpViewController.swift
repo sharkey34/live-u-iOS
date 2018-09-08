@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         ref = Database.database().reference()
         
         let gradiantLayer = CAGradientLayer()
@@ -106,7 +106,21 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func CancelPressed(_ sender: UIButton) {
+        let superView = parent!
         
+        self.willMove(toParentViewController: nil)
+        
+        self.view.removeFromSuperview()
+        
+        self.removeFromParentViewController()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let logIn = storyboard.instantiateViewController(withIdentifier: "logIn")
+        
+        superView.addChildViewController(logIn)
+        
+        superView.view.addSubview(logIn.view)
     }
     
     

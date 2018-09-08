@@ -25,7 +25,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         ref = Database.database().reference()
         
         logInButton.layer.cornerRadius = 0.5
@@ -65,12 +64,21 @@ class LoginViewController: UIViewController {
     }
     @IBAction func signInPressed(_ sender: UIButton) {
         
+        let superView = parent!
+
+        self.willMove(toParentViewController: nil)
+
+        self.view.removeFromSuperview()
+
+        self.removeFromParentViewController()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "signUp") as! SignUpViewController
+        let signUp = storyboard.instantiateViewController(withIdentifier: "signUp")
         
-        self.view.addSubview(viewController.view)
+        superView.addChildViewController(signUp)
+
+        superView.view.addSubview(signUp.view)
         
     }
 }
