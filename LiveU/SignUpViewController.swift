@@ -88,10 +88,8 @@ class SignUpViewController: UIViewController {
                     Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                         if let _ = result{
                             
-                            self.ref.child("users").childByAutoId().setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
-                            
-                            self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: "\(city), \(state)")
-                            
+                            self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
+                                                      
                             self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             
                         } else {

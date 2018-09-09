@@ -46,22 +46,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 // TODO: Create a user from the found users data.
                 // Check if business or Artist
                 
-                let user = Auth.auth().currentUser?.uid
-                self.ref.child("Users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
-                    let data = snapshot.value as? NSDictionary
-                    let email = data?["email"] as? String ?? ""
-                    let fullName = data?["fullName"] as? String ?? ""
-                    let artist = data?["artist"] as? Bool ?? false
-                    let venue = data?["venue"] as? Bool ?? false
-                    let payPal = data?["payPal"] as? String ?? nil
-                    let location = data?["location"] as? String ?? nil
-                    
-                    self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
-                    
-                    print(self.currentUser.fullName)
-                })
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
+                
                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
           
             } else {
@@ -133,6 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func subscribeUnsubscribe(bool: Bool){
+        
         
         if bool == true {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)

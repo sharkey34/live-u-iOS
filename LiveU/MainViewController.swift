@@ -24,10 +24,10 @@ class MainViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let profileView = segue.destination as! ProfileViewController
-        profileView.profileType = "artist"
+//        profileView.profileType = "artist"
+        profileView.currentUser = currentUser
     }
 }
