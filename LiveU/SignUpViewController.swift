@@ -14,13 +14,18 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     private var ref: DatabaseReference!
+    var currentUser: User?
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailExclamation: UIImageView!
     @IBOutlet weak var passwordExclamation: UIImageView!
-    
-    @IBOutlet weak var artistVenueSegment: UISegmentedControl!
+    @IBOutlet weak var artistVenueControl: UISegmentedControl!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var cityExclamation: UIImageView!
+    @IBOutlet weak var stateExclamation: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,48 +48,49 @@ class SignUpViewController: UIViewController {
     
     @IBAction func SignUpPressed(_ sender: UIButton) {
         
-        var validEmail: Bool?
-        var validPassword: Bool?
+        var valid = 3
+        var artist = false
+        var venue = false
         
-        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        guard let email = emailTextField.text, let password = passwordTextField.text, let fullName = fullNameTextField.text, let city = cityTextField.text, let state = stateTextField.text else {return}
         
-        if email.isEmpty == false, password.isEmpty == false {
+        if email.isEmpty == false, password.isEmpty == false, fullName.isEmpty == false, city.isEmpty == false, state.isEmpty == false {
             
             do {
+                // Using REGEX to validate email.
                 let regex = try NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
                     , options: .caseInsensitive)
                 
                 if regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.count)) != nil {
                     print("Valid email found.")
-                    validEmail = true
+                    valid += 1
                 } else {
                     emailExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
-                    validEmail = false
                 }
                 
+                // Password Validation
                 if password.count >= 8 {
                     print("Valid Password entered.")
-                    validPassword = true
+                    valid += 1
                 } else {
                     passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
-                    validPassword = false
                 }
                 
-                if validPassword == true && validEmail == true{
+                if artistVenueControl.selectedSegmentIndex == 0 {
+                artist = true
+                } else {
+                venue = true
+                }
+                
+                if valid == 5 {
                     
-                    print("Both are valid.")
+                    print("All are valid.")
                     Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                         if let _ = result{
                             
-                            self.ref.child("users").childByAutoId().setValue(["email":email, "password": password])
+                            self.ref.child("users").childByAutoId().setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
                             
-                            self.emailTextField.text = nil
-                            self.passwordTextField.text = nil
-                                
-                                
-                  
-                            // TODO: Save all input information to a User object.
-                            // Check if business or Artist
+                            self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: "\(city), \(state)")
                             
                             self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             
@@ -118,4 +124,6 @@ class SignUpViewController: UIViewController {
         superView.addChildViewController(logIn)
         superView.view.addSubview(logIn.view)
     }
+    
+
 }

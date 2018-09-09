@@ -50,17 +50,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.ref.child("Users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
                     let data = snapshot.value as? NSDictionary
                     let email = data?["email"] as? String ?? ""
-                    let fullName = data?["email"] as? String ?? ""
+                    let fullName = data?["fullName"] as? String ?? ""
                     let artist = data?["artist"] as? Bool ?? false
                     let venue = data?["venue"] as? Bool ?? false
                     let payPal = data?["payPal"] as? String ?? nil
                     let location = data?["location"] as? String ?? nil
                     
                     self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+                    
+                    print(self.currentUser.fullName)
                 })
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+          
             } else {
                 if let err = error{
                     print(err.localizedDescription)

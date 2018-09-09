@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,6 @@ class MainViewController: UIViewController {
         let logIn = storyboard.instantiateViewController(withIdentifier: "logIn")
         self.addChildViewController(logIn)
         view.addSubview(logIn.view)
-        
     }
 
     override func didReceiveMemoryWarning() {

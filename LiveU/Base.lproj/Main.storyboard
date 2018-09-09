@@ -289,14 +289,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I09-6A-Pxj">
-                                <rect key="frame" x="284" y="114" width="26" height="23"/>
+                                <rect key="frame" x="292" y="117" width="18" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldY-jt-VhG">
-                                <rect key="frame" x="284" y="165" width="26" height="23"/>
+                                <rect key="frame" x="292" y="169" width="18" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNd-Rg-fOP">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNd-Rg-fOP">
                                 <rect key="frame" x="56" y="211" width="263" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -304,7 +304,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4P9-Cw-sRI">
-                                <rect key="frame" x="284" y="215" width="26" height="23"/>
+                                <rect key="frame" x="292" y="218" width="18" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yhv-a8-Ol9">
@@ -316,21 +316,48 @@
                                 </segments>
                                 <color key="tintColor" red="0.22745098039215686" green="0.80000000000000004" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FgZ-2l-Ms2">
+                                <rect key="frame" x="56" y="255" width="173" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ep-U0-M4x">
+                                <rect key="frame" x="267" y="255" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30E-qv-cuw">
+                                <rect key="frame" x="298" y="262" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wyM-fi-0iu">
+                                <rect key="frame" x="204" y="262" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OWu-5m-Sow"/>
                     </view>
                     <connections>
-                        <outlet property="artistVenueSegment" destination="yhv-a8-Ol9" id="8gf-dv-SNN"/>
+                        <outlet property="artistVenueControl" destination="yhv-a8-Ol9" id="LuZ-3B-hrK"/>
+                        <outlet property="cityExclamation" destination="wyM-fi-0iu" id="TnI-sJ-bGn"/>
+                        <outlet property="cityTextField" destination="FgZ-2l-Ms2" id="m8B-Pz-cFI"/>
                         <outlet property="emailExclamation" destination="I09-6A-Pxj" id="VeL-bu-EPt"/>
                         <outlet property="emailTextField" destination="qIt-w9-mk2" id="4DL-GN-Yep"/>
+                        <outlet property="fullNameTextField" destination="qNd-Rg-fOP" id="Cl6-r8-F8Y"/>
                         <outlet property="passwordExclamation" destination="ldY-jt-VhG" id="gxq-oZ-Es5"/>
                         <outlet property="passwordTextField" destination="wEB-8R-IJi" id="mJ0-Yt-o8K"/>
+                        <outlet property="stateExclamation" destination="30E-qv-cuw" id="5ve-kf-ld3"/>
+                        <outlet property="stateTextField" destination="7ep-U0-M4x" id="arB-ix-Xcf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhf-7A-kzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207" y="602"/>
+            <point key="canvasLocation" x="-207.19999999999999" y="601.34932533733138"/>
         </scene>
         <!--Artist Profile View Controller-->
         <scene sceneID="AQb-Ra-tly">
