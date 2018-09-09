@@ -14,7 +14,7 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     private var ref: DatabaseReference!
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailExclamation: UIImageView!
@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         ref = Database.database().reference()
         
         let gradiantLayer = CAGradientLayer()
@@ -80,7 +80,9 @@ class SignUpViewController: UIViewController {
                             
                             self.emailTextField.text = nil
                             self.passwordTextField.text = nil
-                            
+                                
+                                
+                  
                             // TODO: Save all input information to a User object.
                             // Check if business or Artist
                             
@@ -93,7 +95,6 @@ class SignUpViewController: UIViewController {
                         }
                     }
                 }
-                
             } catch{
                 print(error.localizedDescription)
             }
@@ -117,16 +118,4 @@ class SignUpViewController: UIViewController {
         superView.addChildViewController(logIn)
         superView.view.addSubview(logIn.view)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
