@@ -16,7 +16,6 @@ class VenueProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         backgroundView.layer.cornerRadius = 0.5
     }
 

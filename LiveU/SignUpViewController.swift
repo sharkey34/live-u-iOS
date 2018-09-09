@@ -12,7 +12,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
     private var ref: DatabaseReference!
     var currentUser: User?
     
@@ -29,6 +29,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         ref = Database.database().reference()
         
@@ -77,9 +79,9 @@ class SignUpViewController: UIViewController {
                 }
                 
                 if artistVenueControl.selectedSegmentIndex == 0 {
-                artist = true
+                    artist = true
                 } else {
-                venue = true
+                    venue = true
                 }
                 
                 if valid == 5 {
@@ -89,7 +91,7 @@ class SignUpViewController: UIViewController {
                         if let _ = result{
                             
                             self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
-                                                      
+                            
                             self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             
                         } else {
@@ -123,5 +125,5 @@ class SignUpViewController: UIViewController {
         superView.view.addSubview(logIn.view)
     }
     
-
+    
 }
