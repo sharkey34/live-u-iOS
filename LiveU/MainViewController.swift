@@ -17,6 +17,8 @@ class MainViewController: UIViewController {
     var currentUser: User!
     var ref: DatabaseReference!
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
