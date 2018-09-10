@@ -31,7 +31,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         
-        
         ref = Database.database().reference()
         
         let gradiantLayer = CAGradientLayer()
@@ -91,8 +90,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         if let _ = result{
                             
                             self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
-                            
-                            self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                            let user = Auth.auth().currentUser?.uid
+                            self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
+                                let data = snapshot.value as? NSDictionary
+                                let email = data?["email"] as? String ?? ""
+                                let fullName = data?["fullName"] as? String ?? ""
+                                let artist = data?["artist"] as? Bool ?? false
+                                let venue = data?["venue"] as? Bool ?? false
+                                let payPal = data?["payPal"] as? String ?? nil
+                                let location = data?["location"] as? String ?? nil
+
+                                self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+
+                                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                            })
                             
                         } else {
                             if let err = error{

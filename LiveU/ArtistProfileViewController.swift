@@ -16,8 +16,9 @@ import Firebase
 
 class ArtistProfileViewController: UIViewController {
     
+    
     var ref: DatabaseReference!
-    var currentUser: User!
+    var currentUser:User!
     
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -31,10 +32,10 @@ class ArtistProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Artist")
         ref = Database.database().reference()
         
-//        self.artistNameLabel.text = currentUser.fullName
-//        self.locationLabel.text = currentUser.location
+        
         
         backGroundView.layer.cornerRadius = 0.5
         aboutView.layer.cornerRadius = 0.5
@@ -55,4 +56,7 @@ class ArtistProfileViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    
+    func setup(){
+    }
 }

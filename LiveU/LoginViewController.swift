@@ -28,6 +28,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setup()
     }
     
@@ -49,7 +50,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 
-                self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                print("Entered")
+                NotificationCenter.default.removeObserver(self)
+                let user = Auth.auth().currentUser?.uid
+                self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let data = snapshot.value as? NSDictionary
+                    let email = data?["email"] as? String ?? ""
+                    let fullName = data?["fullName"] as? String ?? ""
+                    let artist = data?["artist"] as? Bool ?? false
+                    let venue = data?["venue"] as? Bool ?? false
+                    let payPal = data?["payPal"] as? String ?? nil
+                    let location = data?["location"] as? String ?? nil
+                    self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+                    self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                })
+                
           
             } else {
                 if let err = error{
@@ -59,7 +74,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func signInPressed(_ sender: UIButton) {
-        
         // Removing view from Parent.
         let superView = parent!
         self.willMove(toParentViewController: nil)
