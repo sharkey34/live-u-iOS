@@ -14,7 +14,7 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     private var ref: DatabaseReference!
-    var currentUser: User?
+    var currentUser: User!
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -50,8 +50,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func SignUpPressed(_ sender: UIButton) {
         
         var valid = 3
-        var artist = false
-        var venue = false
+        var artist = ""
+        var venue = ""
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let fullName = fullNameTextField.text, let city = cityTextField.text, let state = stateTextField.text else {return}
         
@@ -77,10 +77,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
                 }
                 
+                //MARK: Change back to bool when encoding is figured out.
                 if artistVenueControl.selectedSegmentIndex == 0 {
-                    artist = true
+                    artist = "true"
+                    venue = "false"
                 } else {
-                    venue = true
+                    venue = "false"
+                    artist = "true"
                 }
                 
                 if valid == 5 {
@@ -95,13 +98,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 let data = snapshot.value as? NSDictionary
                                 let email = data?["email"] as? String ?? ""
                                 let fullName = data?["fullName"] as? String ?? ""
-                                let artist = data?["artist"] as? Bool ?? false
-                                let venue = data?["venue"] as? Bool ?? false
+                                let artist = data?["artist"] as? String ?? nil
+                                let venue = data?["venue"] as? String ?? nil
                                 let payPal = data?["payPal"] as? String ?? nil
                                 let location = data?["location"] as? String ?? nil
                                 
                                 self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
                                 
+                                UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             })
                             

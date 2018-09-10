@@ -16,7 +16,6 @@ extension UserDefaults{
         
         let binaryData = NSKeyedArchiver.archivedData(withRootObject: currentUser)
         
-        
         self.set(binaryData, forKey: key)
     }
     
