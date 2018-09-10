@@ -99,10 +99,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 let venue = data?["venue"] as? Bool ?? false
                                 let payPal = data?["payPal"] as? String ?? nil
                                 let location = data?["location"] as? String ?? nil
-
+                                
                                 self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
-
-                                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                                
+                                self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             })
                             
                         } else {
@@ -136,5 +136,34 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         superView.view.addSubview(logIn.view)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        switch textField.tag {
+        case 0:
+            textField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        case 1:
+            textField.resignFirstResponder()
+            fullNameTextField.becomeFirstResponder()
+        case 2:
+            textField.resignFirstResponder()
+            cityTextField.becomeFirstResponder()
+        case 3:
+            textField.resignFirstResponder()
+            stateTextField.becomeFirstResponder()
+        case 4:
+            textField.resignFirstResponder()
+            artistVenueControl.becomeFirstResponder()
+        default:
+            print("Textfield switch failed.")
+        }
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
     
 }

@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let profileView = segue.destination as! ProfileViewController
+        let profileView = segue.destination as! ProfileTabViewController
         let controllerArray = self.childViewControllers
         
         

@@ -14,13 +14,29 @@ class ProfileTabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if let user = currentUser{
-//            if user.artist == true{
-//                addSubView(profileType: "artist")
-//            } else if user.venue == true{
-//                addSubView(profileType: "venue")
-//            }
-//        }
+        if let user = currentUser{
+            if user.artist == true{
+                let artistProfileVIew = ArtistProfileViewController()
+                artistProfileVIew.title = "artist"
+                artistProfileVIew.currentUser = currentUser
+                
+                artistProfileVIew.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "ProfileIcon"), selectedImage: #imageLiteral(resourceName: "ProfileIcon"))
+                
+                
+                let addView = AddViewController()
+                addView.title = "add"
+                addView.tabBarItem = UITabBarItem(title: "Add", image: #imageLiteral(resourceName: "AddIcon"), selectedImage: #imageLiteral(resourceName: "AddIcon"))
+                
+                self.viewControllers = [artistProfileVIew,addView]
+                
+            } else if user.venue == true{
+                let venueProfileView = VenueProfileViewController()
+                venueProfileView.title = "venue"
+                
+                let addView = AddViewController()
+                addView.title = "add"
+            }
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -39,19 +55,18 @@ class ProfileTabViewController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
-//    func addSubView(profileType: String) {
-//        // Declare closure calling functions in the different view controllers setupfunctions
-//        // Passing the currentUser forward.
-//        if profileType == "artist" {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let artistProfile = storyboard.instantiateViewController(withIdentifier: "artistProfile")
-//            artistProfileView.addSubview(artistProfile.view)
-//
-//            artistProfileView.addSubview(artistProfile.view)
-//        } else if profileType == "venue"{
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let venueProfile = storyboard.instantiateViewController(withIdentifier: "venueProfile")
-//            artistProfileView.addSubview(venueProfile.view)
-//        }
-//    }
+    func addSubView(profileType: String) {
+        // Declare closure calling functions in the different view controllers setupfunctions
+        // Passing the currentUser forward.
+        if profileType == "artist" {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let artistProfile = storyboard.instantiateViewController(withIdentifier: "artistProfile")
+            self.view.addSubview(artistProfile.view)
+
+        } else if profileType == "venue"{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let venueProfile = storyboard.instantiateViewController(withIdentifier: "venueProfile")
+            self.view.addSubview(venueProfile.view)
+        }
+    }
 }
