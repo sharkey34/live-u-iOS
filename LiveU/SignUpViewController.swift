@@ -163,7 +163,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        fullNameTextField.resignFirstResponder()
+        cityTextField.resignFirstResponder()
+        stateTextField.resignFirstResponder()
     }
     
 }
