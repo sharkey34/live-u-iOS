@@ -64,7 +64,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
                     self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                 })
-                
           
             } else {
                 if let err = error{
