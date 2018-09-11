@@ -14,14 +14,13 @@ class TabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Disabling access to the add viewController if the user is an Artist.
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
         if currentUser.artist == "true"{
             tabBar.items![1].isEnabled = false
             tabBar.items![1].title = nil
         }
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

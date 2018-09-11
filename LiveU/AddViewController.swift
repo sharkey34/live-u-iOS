@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet var textFieldCollection: [UITextField]!
@@ -76,5 +76,43 @@ class AddViewController: UIViewController {
         gradiantLayer.frame = view.frame
         
         view.layer.insertSublayer(gradiantLayer, at: 0)
+    }
+    
+    // TextField Callbacks
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        // TODO: Possible checks each time a text field is left.
+        
+        switch textField.tag {
+        case 0:
+            textFieldCollection[0].resignFirstResponder()
+            textFieldCollection[1].becomeFirstResponder()
+        case 1:
+            textFieldCollection[1].resignFirstResponder()
+            textFieldCollection[2].becomeFirstResponder()
+        case 2:
+            textFieldCollection[2].resignFirstResponder()
+            textFieldCollection[3].becomeFirstResponder()
+        case 3:
+            textFieldCollection[3].resignFirstResponder()
+            textFieldCollection[4].becomeFirstResponder()
+        case 4:
+            textFieldCollection[4].resignFirstResponder()
+            textFieldCollection[5].becomeFirstResponder()
+        case 5:
+            textFieldCollection[5].resignFirstResponder()
+        default:
+            print("Tag out of bounds.")
+        }
+        
+        
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for field in textFieldCollection{
+            field.resignFirstResponder()
+        }
     }
 }
