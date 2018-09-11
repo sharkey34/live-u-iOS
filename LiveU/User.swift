@@ -20,6 +20,7 @@ class User:  NSObject, NSCoding {
     var payPal: String!
     var profileImage: UIImage!
     var location: String!
+    var posts: [String]!
     
     func encode(with aCoder: NSCoder) {
         
@@ -31,6 +32,8 @@ class User:  NSObject, NSCoding {
         aCoder.encode(payPal, forKey: "payPal")
         aCoder.encode(profileImage, forKey: "profileImage")
         aCoder.encode(location, forKey: "location")
+        aCoder.encode(posts, forKey: "posts")
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,9 +46,10 @@ class User:  NSObject, NSCoding {
         self.payPal = (aDecoder.decodeObject(forKey: "payPal") as? String)
         self.profileImage = (aDecoder.decodeObject(forKey: "profileImage") as? UIImage)
         self.location = (aDecoder.decodeObject(forKey: "location") as? String)
+        self.posts = (aDecoder.decodeObject(forKey: "posts") as? [String])
     }
     
-    init(uid: String,fullName: String, email: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?) {
+    init(uid: String,fullName: String, email: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?, posts: [String]?) {
         
         self.uid = uid
         self.fullName = fullName
@@ -55,6 +59,7 @@ class User:  NSObject, NSCoding {
         self.payPal = payPal
         self.profileImage = profileImage
         self.location = location
+        self.posts = posts
         
     }
 }

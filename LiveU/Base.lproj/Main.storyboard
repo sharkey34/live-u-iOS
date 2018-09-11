@@ -239,6 +239,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dNl-bu-JWR">
+                                <rect key="frame" x="44" y="331" width="287" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-RB-eMm">
+                                <rect key="frame" x="44" y="398" width="199" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZy-HR-lae">
+                                <rect key="frame" x="44" y="268" width="287" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ID-kh-Zh6">
                                 <rect key="frame" x="68" y="523" width="239" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -251,8 +272,8 @@
                                     <action selector="postButtonPressed:" destination="3wK-7W-D8K" eventType="touchUpInside" id="dob-yT-tNZ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZy-HR-lae">
-                                <rect key="frame" x="44" y="268" width="287" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84X-2b-G8b">
+                                <rect key="frame" x="263" y="398" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -268,6 +289,9 @@
                         <outletCollection property="textFieldCollection" destination="SKu-bj-1g0" collectionClass="NSMutableArray" id="bdR-2t-rgy"/>
                         <outletCollection property="textFieldCollection" destination="pzF-Se-XSv" collectionClass="NSMutableArray" id="dQY-U7-GF9"/>
                         <outletCollection property="textFieldCollection" destination="TZy-HR-lae" collectionClass="NSMutableArray" id="4Vh-0s-Ryy"/>
+                        <outletCollection property="textFieldCollection" destination="dNl-bu-JWR" collectionClass="NSMutableArray" id="bUb-oh-XND"/>
+                        <outletCollection property="textFieldCollection" destination="e1L-RB-eMm" collectionClass="NSMutableArray" id="OjG-Cd-EF7"/>
+                        <outletCollection property="textFieldCollection" destination="84X-2b-G8b" collectionClass="NSMutableArray" id="T9r-o7-M5y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-Z0-F1F" userLabel="First Responder" sceneMemberID="firstResponder"/>

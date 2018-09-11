@@ -14,9 +14,11 @@ class AddViewController: UIViewController {
     
     @IBOutlet var textFieldCollection: [UITextField]!
     
+    private var currentUser: User!
     private var ref: DatabaseReference!
-    private var date: Date?
+    private var postDate: String!
     private var datePicker = UIDatePicker()
+    private var fullAddress: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +36,20 @@ class AddViewController: UIViewController {
     format.locale = Locale.current
     format.dateFormat = "EEEE, MMMM dd, yyyy"
     let dateString = format.string(from: datePicker.date)
+    postDate = dateString
     
-    print(dateString)
-    
+    textFieldCollection[2].text = postDate
     }
+    
+    
     @IBAction func postButtonPressed(_ sender: UIButton) {
         
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        fullAddress = "\(String(describing: textFieldCollection[4].text)) \(String(describing: textFieldCollection[5].text)), \(textFieldCollection[6])"
+        
+        ref.child("users").child(currentUser.uid).updateChildValues(["posts": ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]])
+
     }
     
     func setUp(){
