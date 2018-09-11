@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
                 let artistPro = storyboard.instantiateViewController(withIdentifier: "artistProfile")
                 self.addChildViewController(artistPro)
                 self.view.addSubview(artistPro.view)
-                
+                                
             } else if user.venue == "true"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let venuePro = storyboard.instantiateViewController(withIdentifier: "venueProfile")

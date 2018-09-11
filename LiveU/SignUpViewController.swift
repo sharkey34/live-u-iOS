@@ -82,8 +82,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     artist = "true"
                     venue = "false"
                 } else {
-                    venue = "false"
-                    artist = "true"
+                    venue = "true"
+                    artist = "false"
                 }
                 
                 if valid == 5 {

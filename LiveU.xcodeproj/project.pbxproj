@@ -11,6 +11,7 @@
 		4A4192EB2146A9CB009ED96B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EA2146A9CB009ED96B /* AddViewController.swift */; };
 		4A4192ED214705B8009ED96B /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */; };
 		4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EE21473D28009ED96B /* ProfileViewController.swift */; };
+		4A4192F3214766C3009ED96B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192F2214766C3009ED96B /* SearchViewController.swift */; };
 		4A6639882141707100914A02 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6639872141707100914A02 /* SignUpViewController.swift */; };
 		4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A663989214314A700914A02 /* ArtistProfileViewController.swift */; };
 		4A66398E214315A500914A02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66398D214315A500914A02 /* User.swift */; };
@@ -32,6 +33,7 @@
 		4A4192EA2146A9CB009ED96B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		4A4192EE21473D28009ED96B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4A4192F2214766C3009ED96B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4A6639872141707100914A02 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4A663989214314A700914A02 /* ArtistProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistProfileViewController.swift; sourceTree = "<group>"; };
 		4A66398D214315A500914A02 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				4A4192EA2146A9CB009ED96B /* AddViewController.swift */,
 				4A66398D214315A500914A02 /* User.swift */,
 				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
+				4A4192F2214766C3009ED96B /* SearchViewController.swift */,
 				4A6F71BC213F66B4009C9B1C /* Main.storyboard */,
 				4A6F71BF213F66B4009C9B1C /* Assets.xcassets */,
 				4A6F71C1213F66B4009C9B1C /* LaunchScreen.storyboard */,
@@ -243,6 +246,7 @@
 				4A4192EB2146A9CB009ED96B /* AddViewController.swift in Sources */,
 				4A4192E92146A3E9009ED96B /* TabViewController.swift in Sources */,
 				4A6F71BB213F66B4009C9B1C /* LoginViewController.swift in Sources */,
+				4A4192F3214766C3009ED96B /* SearchViewController.swift in Sources */,
 				4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */,
 				4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */,
 				4A66398E214315A500914A02 /* User.swift in Sources */,
