@@ -21,6 +21,28 @@ class AddViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUp()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+   @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+    
+    let format = DateFormatter()
+    format.locale = Locale.current
+    format.dateFormat = "EEEE, MMMM dd, yyyy"
+    let dateString = format.string(from: datePicker.date)
+    
+    print(dateString)
+    
+    }
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    func setUp(){
         ref  = Database.database().reference()
         
         // setting up datePicker
@@ -44,22 +66,5 @@ class AddViewController: UIViewController {
         gradiantLayer.frame = view.frame
         
         view.layer.insertSublayer(gradiantLayer, at: 0)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-   @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-    
-    date = datePicker.date
-    
-    print(date!.description)
-        
-    }
-    @IBAction func postButtonPressed(_ sender: UIButton) {
-        
-        
     }
 }
