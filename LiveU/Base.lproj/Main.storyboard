@@ -253,6 +253,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84X-2b-G8b">
+                                <rect key="frame" x="263" y="398" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textField opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZy-HR-lae">
                                 <rect key="frame" x="44" y="268" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -260,6 +267,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IhI-kc-bpO">
+                                <rect key="frame" x="308" y="77" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="88a-Yg-uul">
+                                <rect key="frame" x="308" y="141" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I77-SJ-B2q">
+                                <rect key="frame" x="308" y="208" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4L-1W-4pK">
+                                <rect key="frame" x="308" y="275" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOU-eS-MZQ">
+                                <rect key="frame" x="308" y="338" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XM-n5-Gxx">
+                                <rect key="frame" x="219" y="405" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ID-kh-Zh6">
                                 <rect key="frame" x="68" y="523" width="239" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -272,13 +303,10 @@
                                     <action selector="postButtonPressed:" destination="3wK-7W-D8K" eventType="touchUpInside" id="dob-yT-tNZ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84X-2b-G8b">
-                                <rect key="frame" x="263" y="398" width="68" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GhW-Lr-v1c">
+                                <rect key="frame" x="308" y="405" width="18" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VFb-lS-PM3"/>
@@ -292,6 +320,13 @@
                         <outletCollection property="textFieldCollection" destination="dNl-bu-JWR" collectionClass="NSMutableArray" id="bUb-oh-XND"/>
                         <outletCollection property="textFieldCollection" destination="e1L-RB-eMm" collectionClass="NSMutableArray" id="OjG-Cd-EF7"/>
                         <outletCollection property="textFieldCollection" destination="84X-2b-G8b" collectionClass="NSMutableArray" id="T9r-o7-M5y"/>
+                        <outletCollection property="imageViewCollection" destination="IhI-kc-bpO" collectionClass="NSMutableArray" id="fac-7B-0HV"/>
+                        <outletCollection property="imageViewCollection" destination="88a-Yg-uul" collectionClass="NSMutableArray" id="4CA-l3-CNm"/>
+                        <outletCollection property="imageViewCollection" destination="I77-SJ-B2q" collectionClass="NSMutableArray" id="PDA-U1-jfJ"/>
+                        <outletCollection property="imageViewCollection" destination="M4L-1W-4pK" collectionClass="NSMutableArray" id="ygm-oS-jL1"/>
+                        <outletCollection property="imageViewCollection" destination="tOU-eS-MZQ" collectionClass="NSMutableArray" id="ZkE-5c-J7a"/>
+                        <outletCollection property="imageViewCollection" destination="5XM-n5-Gxx" collectionClass="NSMutableArray" id="P88-NM-Qun"/>
+                        <outletCollection property="imageViewCollection" destination="GhW-Lr-v1c" collectionClass="NSMutableArray" id="X5A-6K-YUJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-Z0-F1F" userLabel="First Responder" sceneMemberID="firstResponder"/>

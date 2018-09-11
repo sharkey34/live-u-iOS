@@ -13,6 +13,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 
     
     @IBOutlet var textFieldCollection: [UITextField]!
+    @IBOutlet var imageViewCollection: [UIImageView]!
     
     private var currentUser: User!
     private var ref: DatabaseReference!
@@ -28,28 +29,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-   @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-    
-    let format = DateFormatter()
-    format.locale = Locale.current
-    format.dateFormat = "EEEE, MMMM dd, yyyy"
-    let dateString = format.string(from: datePicker.date)
-    postDate = dateString
-    
-    textFieldCollection[2].text = postDate
-    }
-    
-    
-    @IBAction func postButtonPressed(_ sender: UIButton) {
-        
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
-        fullAddress = "\(String(describing: textFieldCollection[4].text)) \(String(describing: textFieldCollection[5].text)), \(textFieldCollection[6])"
-        
-        ref.child("users").child(currentUser.uid).updateChildValues(["posts": ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]])
-
     }
     
     func setUp(){
@@ -76,6 +55,52 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         gradiantLayer.frame = view.frame
         
         view.layer.insertSublayer(gradiantLayer, at: 0)
+    }
+    
+      // Post tectField validation.
+    func validatePost() -> Bool{
+        var validPost = true
+        
+        for field in textFieldCollection.enumerated(){
+            if field.element.text?.isEmpty == true{
+                imageViewCollection[field.offset].image = #imageLiteral(resourceName: "ExclamationPoint")
+            }
+        }
+        
+        for image in imageViewCollection{
+            if image.image != nil{
+                validPost = false
+            }
+        }
+        
+        return validPost
+    }
+    
+    @IBAction func postButtonPressed(_ sender: UIButton) {
+    
+        let valid = validatePost()
+        
+        if valid {
+            currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+            
+            fullAddress = "\(String(describing: textFieldCollection[4].text)) \(String(describing: textFieldCollection[5].text)), \(textFieldCollection[6])"
+            
+            ref.child("users").child(currentUser.uid).updateChildValues(["posts": ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]])
+        } else {
+            print("invalid entry.")
+        }
+    }
+    
+    // DatePicker Callbacks
+   @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+    
+    let format = DateFormatter()
+    format.locale = Locale.current
+    format.dateFormat = "EEEE, MMMM dd, yyyy"
+    let dateString = format.string(from: datePicker.date)
+    postDate = dateString
+    
+    textFieldCollection[2].text = postDate
     }
     
     // TextField Callbacks
@@ -115,4 +140,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             field.resignFirstResponder()
         }
     }
+    
+  
 }
