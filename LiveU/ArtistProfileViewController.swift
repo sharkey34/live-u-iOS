@@ -32,14 +32,19 @@ class ArtistProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Artist")
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        if let user = currentUser{
+            profileImage.image = #imageLiteral(resourceName: "Artist Profile")
+            artistNameLabel.text = user.fullName
+        }
+        
         ref = Database.database().reference()
         
-        
-        
-        backGroundView.layer.cornerRadius = 0.5
-        aboutView.layer.cornerRadius = 0.5
+        backGroundView.layer.cornerRadius = 15
+        aboutView.layer.cornerRadius = 15
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -21,8 +21,15 @@ class VenueProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        if let user = currentUser{
+            profileImageView.image = #imageLiteral(resourceName: "VenueProfile")
+            venueNameLabel.text = user.fullName
+        }
         ref = Database.database().reference()
-        backgroundView.layer.cornerRadius = 0.5
+        backgroundView.layer.cornerRadius = 15
     }
 
     override func didReceiveMemoryWarning() {

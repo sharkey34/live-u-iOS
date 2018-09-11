@@ -41,16 +41,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if let user = result{
-                print("user \(user) found")
-                
+            if let _ = result{                
                 // TODO: Create a user from the found users data.
                 // Check if business or Artist
                 
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 
-                print("Entered")
                 NotificationCenter.default.removeObserver(self)
                 let user = Auth.auth().currentUser?.uid
                 self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in

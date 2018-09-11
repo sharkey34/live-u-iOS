@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A4192E92146A3E9009ED96B /* ProfileTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192E82146A3E9009ED96B /* ProfileTabViewController.swift */; };
+		4A4192E92146A3E9009ED96B /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192E82146A3E9009ED96B /* TabViewController.swift */; };
 		4A4192EB2146A9CB009ED96B /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EA2146A9CB009ED96B /* AddViewController.swift */; };
 		4A4192ED214705B8009ED96B /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */; };
+		4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EE21473D28009ED96B /* ProfileViewController.swift */; };
 		4A6639882141707100914A02 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6639872141707100914A02 /* SignUpViewController.swift */; };
 		4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A663989214314A700914A02 /* ArtistProfileViewController.swift */; };
 		4A66398E214315A500914A02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66398D214315A500914A02 /* User.swift */; };
@@ -27,9 +28,10 @@
 /* Begin PBXFileReference section */
 		0CE2E35B306BF2749471EE1B /* Pods_LiveU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5181767CA9DCD45F80F7D3 /* Pods-LiveU.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveU.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveU/Pods-LiveU.release.xcconfig"; sourceTree = "<group>"; };
-		4A4192E82146A3E9009ED96B /* ProfileTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabViewController.swift; sourceTree = "<group>"; };
+		4A4192E82146A3E9009ED96B /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		4A4192EA2146A9CB009ED96B /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		4A4192EE21473D28009ED96B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4A6639872141707100914A02 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4A663989214314A700914A02 /* ArtistProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistProfileViewController.swift; sourceTree = "<group>"; };
 		4A66398D214315A500914A02 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -83,7 +85,8 @@
 				4A66399321433EF700914A02 /* MainViewController.swift */,
 				4A6F71BA213F66B4009C9B1C /* LoginViewController.swift */,
 				4A6639872141707100914A02 /* SignUpViewController.swift */,
-				4A4192E82146A3E9009ED96B /* ProfileTabViewController.swift */,
+				4A4192E82146A3E9009ED96B /* TabViewController.swift */,
+				4A4192EE21473D28009ED96B /* ProfileViewController.swift */,
 				4A663989214314A700914A02 /* ArtistProfileViewController.swift */,
 				4A663991214335D100914A02 /* VenueProfileViewController.swift */,
 				4A4192EA2146A9CB009ED96B /* AddViewController.swift */,
@@ -238,8 +241,9 @@
 				4A66399421433EF700914A02 /* MainViewController.swift in Sources */,
 				4A6639882141707100914A02 /* SignUpViewController.swift in Sources */,
 				4A4192EB2146A9CB009ED96B /* AddViewController.swift in Sources */,
-				4A4192E92146A3E9009ED96B /* ProfileTabViewController.swift in Sources */,
+				4A4192E92146A3E9009ED96B /* TabViewController.swift in Sources */,
 				4A6F71BB213F66B4009C9B1C /* LoginViewController.swift in Sources */,
+				4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */,
 				4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */,
 				4A66398E214315A500914A02 /* User.swift in Sources */,
 				4A663992214335D100914A02 /* VenueProfileViewController.swift in Sources */,
