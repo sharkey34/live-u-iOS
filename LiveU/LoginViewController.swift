@@ -58,7 +58,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let venue = data?["venue"] as? String ?? nil
                         let payPal = data?["payPal"] as? String ?? nil
                         let location = data?["location"] as? String ?? nil
-                        self.currentUser = User(uid: uid, fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+                        let posts = data?["posts"] as? [String] ?? nil
+                        self.currentUser = User(uid: uid, fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts)
                         
                         UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                         

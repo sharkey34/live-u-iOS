@@ -9,14 +9,19 @@
 import UIKit
 
 class TabViewController: UITabBarController {
+    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        if currentUser.artist == "true"{
+            tabBar.items![1].isEnabled = false
+            tabBar.items![1].title = nil
+        }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
 
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

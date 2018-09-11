@@ -96,20 +96,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             let user = Auth.auth().currentUser?.uid
                             
                             if let uid = user {
-                                self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
-                                    let data = snapshot.value as? NSDictionary
-                                    let email = data?["email"] as? String ?? ""
-                                    let fullName = data?["fullName"] as? String ?? ""
-                                    let artist = data?["artist"] as? String ?? nil
-                                    let venue = data?["venue"] as? String ?? nil
-                                    let payPal = data?["payPal"] as? String ?? nil
-                                    let location = data?["location"] as? String ?? nil
-                                    
-                                    self.currentUser = User(uid: uid,fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+                                    self.currentUser = User(uid: uid,fullName: fullName, email: email, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: nil, posts: nil)
                                     
                                     UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                                     self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
-                                })
+                        
                             } else {
                                 print("uid was nil")
                             }
