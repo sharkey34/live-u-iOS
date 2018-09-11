@@ -12,6 +12,7 @@ import UIKit
 class User:  NSObject, NSCoding {
 
     
+    var uid: String
     var fullName: String
     var email: String
     var artist: String!
@@ -22,6 +23,7 @@ class User:  NSObject, NSCoding {
     
     func encode(with aCoder: NSCoder) {
         
+        aCoder.encode(uid, forKey: "uid")
         aCoder.encode(fullName, forKey: "fullName")
         aCoder.encode(email, forKey: "email")
         aCoder.encode(artist, forKey: "artist")
@@ -32,8 +34,10 @@ class User:  NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.fullName = (aDecoder.decodeObject(forKey: "fullName") as? String)!
-        self.email = (aDecoder.decodeObject(forKey: "email") as? String)!
+        
+        self.uid = (aDecoder.decodeObject(forKey: "uid") as! String)
+        self.fullName = (aDecoder.decodeObject(forKey: "fullName") as! String)
+        self.email = (aDecoder.decodeObject(forKey: "email") as! String)
         self.artist = aDecoder.decodeObject(forKey: "artist") as! String
         self.venue = aDecoder.decodeObject(forKey: "venue") as! String
         self.payPal = (aDecoder.decodeObject(forKey: "payPal") as? String)
@@ -41,8 +45,9 @@ class User:  NSObject, NSCoding {
         self.location = (aDecoder.decodeObject(forKey: "location") as? String)
     }
     
-    init(fullName: String, email: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?) {
+    init(uid: String,fullName: String, email: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?) {
         
+        self.uid = uid
         self.fullName = fullName
         self.email = email
         self.artist = artist

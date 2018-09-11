@@ -9,7 +9,9 @@
 import UIKit
 
 class AddViewController: UIViewController {
-
+    @IBOutlet var textFieldCollection: [UITextField]!
+    @IBOutlet weak var dateTime: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

@@ -42,29 +42,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let _ = result{                
-                // TODO: Create a user from the found users data.
-                // Check if business or Artist
                 
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 
                 NotificationCenter.default.removeObserver(self)
                 let user = Auth.auth().currentUser?.uid
-                self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
-                    let data = snapshot.value as? NSDictionary
-                    let email = data?["email"] as? String ?? ""
-                    let fullName = data?["fullName"] as? String ?? ""
-                    let artist = data?["artist"] as? String ?? nil
-                    let venue = data?["venue"] as? String ?? nil
-                    let payPal = data?["payPal"] as? String ?? nil
-                    let location = data?["location"] as? String ?? nil
-                    self.currentUser = User(fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
-                    
-                    UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                 
-                
-                    self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
-                })
+                if let uid = user{
+                    self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let data = snapshot.value as? NSDictionary
+                        let email = data?["email"] as? String ?? ""
+                        let fullName = data?["fullName"] as? String ?? ""
+                        let artist = data?["artist"] as? String ?? nil
+                        let venue = data?["venue"] as? String ?? nil
+                        let payPal = data?["payPal"] as? String ?? nil
+                        let location = data?["location"] as? String ?? nil
+                        self.currentUser = User(uid: uid, fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location)
+                        
+                        UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
+                        
+                        
+                        self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                    })
+                } else {
+                    print("uid was nil")
+                }
           
             } else {
                 if let err = error{
