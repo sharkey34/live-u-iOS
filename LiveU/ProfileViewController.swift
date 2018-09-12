@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        
         if let user = currentUser{
             if user.artist == "true"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

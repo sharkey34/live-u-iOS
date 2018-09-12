@@ -33,10 +33,12 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
+    // TableView Functions
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        tableView.rowHeight = 247
         return fakeData.count
     }
 
@@ -48,9 +50,9 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
-
-    cell.textLabel?.text = fakeData[indexPath.row]
         
+        cell.imageView?.image = #imageLiteral(resourceName: "VenueProfile")
+    
         
         return cell
     }
@@ -100,7 +102,11 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         searchController.definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.scopeButtonTitles = ["Location", "Genre"]
+
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
+        navigationItem.title = "Gigs"
     
     }
     
