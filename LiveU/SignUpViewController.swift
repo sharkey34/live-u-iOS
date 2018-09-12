@@ -47,6 +47,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    // UIButton Actions
+    
     @IBAction func SignUpPressed(_ sender: UIButton) {
         
         var valid = 3
@@ -97,7 +99,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             }
                             
                             
-                            self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
+                            self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "about": about, "artist":artist, "venue": venue, "city":city, "state": state])
                             
                             
                             let user = Auth.auth().currentUser?.uid
@@ -142,6 +144,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         superView.addChildViewController(logIn)
         superView.view.addSubview(logIn.view)
     }
+    
+    
+    // Textfield Callbacks
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
