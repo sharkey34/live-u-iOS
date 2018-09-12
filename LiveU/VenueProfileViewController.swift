@@ -27,6 +27,7 @@ class VenueProfileViewController: UIViewController {
         if let user = currentUser{
             profileImageView.image = #imageLiteral(resourceName: "VenueProfile")
             venueNameLabel.text = user.fullName
+            descriptionTextField.text = currentUser.about
         }
         ref = Database.database().reference()
         backgroundView.layer.cornerRadius = 15

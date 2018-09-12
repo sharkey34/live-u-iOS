@@ -53,13 +53,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
                         let data = snapshot.value as? NSDictionary
                         let email = data?["email"] as? String ?? ""
+                        let about = data?["about"] as? String ?? ""
                         let fullName = data?["fullName"] as? String ?? ""
                         let artist = data?["artist"] as? String ?? nil
                         let venue = data?["venue"] as? String ?? nil
                         let payPal = data?["payPal"] as? String ?? nil
                         let location = data?["location"] as? String ?? nil
                         let posts = data?["posts"] as? [String] ?? nil
-                        self.currentUser = User(uid: uid, fullName: fullName, email: email, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts)
+                        
+                        self.currentUser = User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts)
                         
                         UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                         

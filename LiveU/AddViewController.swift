@@ -85,6 +85,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             
             fullAddress = textFieldCollection[4].text! + " " + textFieldCollection[5].text! + " " + textFieldCollection[6].text!
             
+            //TODO: Add completion block to display a message to the user when info is saved corrrectly.
             
             // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
             let key = ref.child("posts").childByAutoId().key
@@ -92,7 +93,17 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             
             let childUpdates = ["/posts/\(key)": postArray,
                                 "/users/\(currentUser.uid)/posts/\(key)/": postArray]
-            ref.updateChildValues(childUpdates)
+            ref.updateChildValues(childUpdates) {
+                (error:Error?, ref:DatabaseReference) in
+                if let error = error {
+                    print("Data could not be saved: \(error).")
+                } else {
+                    print("Data saved successfully!")
+                    for field in self.textFieldCollection{
+                        field.text = nil
+                    }
+                }
+            }
         } else {
             print("invalid entry.")
         }

@@ -52,6 +52,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         var valid = 3
         var artist = ""
         var venue = ""
+        var about = ""
         
         guard let email = emailTextField.text, let password = passwordTextField.text, let fullName = fullNameTextField.text, let city = cityTextField.text, let state = stateTextField.text else {return}
         
@@ -78,13 +79,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 //MARK: Change back to bool when encoding is figured out.
-                if artistVenueControl.selectedSegmentIndex == 0 {
-                    artist = "true"
-                    venue = "false"
-                } else {
-                    venue = "true"
-                    artist = "false"
-                }
                 
                 if valid == 5 {
                     
@@ -92,11 +86,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
                         if let _ = result{
                             
+                            if self.artistVenueControl.selectedSegmentIndex == 0 {
+                                artist = "true"
+                                venue = "false"
+                                about = "\(fullName) is a dedicated and talented musician attending Full Sail University. Her dream to make a living doing what she loves drove her to the Music Business program with the intent to learn more about the business and further her career. Being a full-time student \(fullName) often has trouble finding the time to contact venues all over town to see if she can play. \(fullName) is looking for a way to focus on school while getting the opportunity to make money practicing her craft."
+                            } else {
+                                venue = "true"
+                                artist = "false"
+                                about = "\(fullName) is an established local business that prides itself on supporting the local community while giving their customers the best experience available."
+                            }
+                            
+                            
                             self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "artist":artist, "venue": venue, "city":city, "state": state])
+                            
+                            
                             let user = Auth.auth().currentUser?.uid
                             
                             if let uid = user {
-                                    self.currentUser = User(uid: uid,fullName: fullName, email: email, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: nil, posts: nil)
+                                self.currentUser = User(uid: uid,fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: nil, posts: nil)
                                     
                                     UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                                     self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)

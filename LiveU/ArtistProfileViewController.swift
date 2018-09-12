@@ -37,6 +37,7 @@ class ArtistProfileViewController: UIViewController {
         if let user = currentUser{
             profileImage.image = #imageLiteral(resourceName: "Artist Profile")
             artistNameLabel.text = user.fullName
+            aboutTextField.text = currentUser.about
         }
         
         ref = Database.database().reference()
