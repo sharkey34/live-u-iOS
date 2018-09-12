@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AddViewController: UIViewController, UITextFieldDelegate {
-
+    
     
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet var imageViewCollection: [UIImageView]!
@@ -26,7 +26,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         
         setUp()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -57,7 +57,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         view.layer.insertSublayer(gradiantLayer, at: 0)
     }
     
-      // Post tectField validation.
+    // Post tectField validation.
     func validatePost() -> Bool{
         var validPost = true
         
@@ -77,30 +77,37 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-    
+        
         let valid = validatePost()
         
         if valid {
             currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
             
-            fullAddress = "\(String(describing: textFieldCollection[4].text)) \(String(describing: textFieldCollection[5].text)), \(textFieldCollection[6])"
+            fullAddress = textFieldCollection[4].text! + " " + textFieldCollection[5].text! + " " + textFieldCollection[6].text!
             
-            ref.child("users").child(currentUser.uid).updateChildValues(["posts": ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]])
+            
+            // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
+            let key = ref.child("posts").childByAutoId().key
+            let postArray = ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]
+            
+            let childUpdates = ["/posts/\(key)": postArray,
+                                "/users/\(currentUser.uid)/posts/\(key)/": postArray]
+            ref.updateChildValues(childUpdates)
         } else {
             print("invalid entry.")
         }
     }
     
     // DatePicker Callbacks
-   @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-    
-    let format = DateFormatter()
-    format.locale = Locale.current
-    format.dateFormat = "EEEE, MMMM dd, yyyy"
-    let dateString = format.string(from: datePicker.date)
-    postDate = dateString
-    
-    textFieldCollection[2].text = postDate
+    @objc func datePickerValueChanged(_ sender: UIDatePicker) {
+        
+        let format = DateFormatter()
+        format.locale = Locale.current
+        format.dateFormat = "EEEE, MMMM dd, yyyy"
+        let dateString = format.string(from: datePicker.date)
+        postDate = dateString
+        
+        textFieldCollection[3].text = postDate
     }
     
     // TextField Callbacks
@@ -141,5 +148,5 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-  
+    
 }
