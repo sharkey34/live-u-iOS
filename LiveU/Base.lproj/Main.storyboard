@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-950" y="601"/>
+            <point key="canvasLocation" x="-1228" y="600"/>
         </scene>
         <!--Venue Profile View Controller-->
         <scene sceneID="Aao-dX-13N">
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9FX-hn-7R1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460" y="601"/>
+            <point key="canvasLocation" x="805" y="601"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="ZiJ-kb-srZ">
@@ -209,7 +209,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUy-6d-o62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3126" y="-169"/>
+            <point key="canvasLocation" x="1630" y="-170"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="2KW-CI-6Mg">
@@ -332,7 +332,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOf-Z0-F1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3126" y="1245"/>
+            <point key="canvasLocation" x="1950" y="1245"/>
         </scene>
         <!--Title-->
         <scene sceneID="cr8-tj-aoU">
@@ -393,6 +393,7 @@
                                     <outletCollection property="cellLabelCollection" destination="ExN-ke-VBt" collectionClass="NSMutableArray" id="QgZ-5Y-uE7"/>
                                     <outletCollection property="cellLabelCollection" destination="iVe-FG-HiO" collectionClass="NSMutableArray" id="2Sa-yu-qxM"/>
                                     <outletCollection property="cellLabelCollection" destination="lwP-gr-0J5" collectionClass="NSMutableArray" id="R1u-tT-8uE"/>
+                                    <segue destination="IjV-iK-fyo" kind="show" identifier="postDetails" id="Fsy-Ss-u7k"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -405,7 +406,126 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAy-Oh-pQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4992.8000000000002" y="1244.527736131934"/>
+            <point key="canvasLocation" x="3426" y="1245"/>
+        </scene>
+        <!--Post Details View Controller-->
+        <scene sceneID="fG6-yi-pdz">
+            <objects>
+                <viewController id="IjV-iK-fyo" customClass="PostDetailsViewController" customModule="LiveU" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hCl-yf-PFV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-fe-uax">
+                                <rect key="frame" x="0.0" y="64" width="375" height="200"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCq-pE-nYl">
+                                <rect key="frame" x="0.0" y="251" width="375" height="367"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Looking for a opening act" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nf7-De-kvw">
+                                        <rect key="frame" x="91" y="8" width="219" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hard Rock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMr-by-Hjo">
+                                        <rect key="frame" x="91" y="80" width="80" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234 Main St" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFJ-zb-gPF">
+                                        <rect key="frame" x="91" y="138" width="101" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Semptember 12th" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZk-Vb-Phh">
+                                        <rect key="frame" x="91" y="51" width="137" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wg-1o-F8O">
+                                        <rect key="frame" x="91" y="109" width="56" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApR-MR-CzP">
+                                        <rect key="frame" x="16" y="51" width="41" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Genre:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iaz-QN-8WA">
+                                        <rect key="frame" x="16" y="80" width="51" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Budget:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGi-M1-Cqj">
+                                        <rect key="frame" x="16" y="109" width="61" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skm-th-luq">
+                                        <rect key="frame" x="16" y="138" width="71" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-CY-8ns">
+                                        <rect key="frame" x="67" y="167" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </mapView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntG-Vb-xTj">
+                                        <rect key="frame" x="119" y="318" width="136" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.2274509804" green="0.80000000000000004" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1647058824" green="0.18039215689999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QSt-fe-uax" firstAttribute="height" secondItem="hCl-yf-PFV" secondAttribute="height" multiplier="0.3" id="1Gj-dT-Gca"/>
+                            <constraint firstItem="8uE-hn-dd9" firstAttribute="bottom" secondItem="KCq-pE-nYl" secondAttribute="bottom" id="4bX-DN-CsJ"/>
+                            <constraint firstItem="KCq-pE-nYl" firstAttribute="leading" secondItem="8uE-hn-dd9" secondAttribute="leading" id="Amz-le-Ty0"/>
+                            <constraint firstItem="8uE-hn-dd9" firstAttribute="trailing" secondItem="KCq-pE-nYl" secondAttribute="trailing" id="MRS-yQ-nDy"/>
+                            <constraint firstItem="KCq-pE-nYl" firstAttribute="height" secondItem="hCl-yf-PFV" secondAttribute="height" multiplier="0.55" id="NOb-ID-GAf"/>
+                            <constraint firstItem="QSt-fe-uax" firstAttribute="top" secondItem="8uE-hn-dd9" secondAttribute="top" id="Ou3-AT-FY5"/>
+                            <constraint firstItem="QSt-fe-uax" firstAttribute="leading" secondItem="8uE-hn-dd9" secondAttribute="leading" id="Pdz-Iv-cqp"/>
+                            <constraint firstItem="8uE-hn-dd9" firstAttribute="trailing" secondItem="QSt-fe-uax" secondAttribute="trailing" id="o3a-1R-8MJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8uE-hn-dd9"/>
+                    </view>
+                    <connections>
+                        <outlet property="postImageView" destination="QSt-fe-uax" id="xrE-As-vQG"/>
+                        <outletCollection property="labelCollection" destination="Nf7-De-kvw" collectionClass="NSMutableArray" id="YMD-kq-2PT"/>
+                        <outletCollection property="labelCollection" destination="cZk-Vb-Phh" collectionClass="NSMutableArray" id="bcF-dm-oBN"/>
+                        <outletCollection property="labelCollection" destination="AMr-by-Hjo" collectionClass="NSMutableArray" id="y3N-1W-aTB"/>
+                        <outletCollection property="labelCollection" destination="4Wg-1o-F8O" collectionClass="NSMutableArray" id="sWD-Sk-lde"/>
+                        <outletCollection property="labelCollection" destination="SFJ-zb-gPF" collectionClass="NSMutableArray" id="PRh-oB-TVa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKJ-FU-W94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4232.8000000000002" y="1244.527736131934"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Oee-a1-QxD">
@@ -423,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqO-Ye-e9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2215" y="1245"/>
+            <point key="canvasLocation" x="1286" y="1245"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Xis-aK-w5h">
@@ -554,7 +674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhf-7A-kzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207.19999999999999" y="601.34932533733138"/>
+            <point key="canvasLocation" x="-513" y="600"/>
         </scene>
         <!--Item-->
         <scene sceneID="AQb-Ra-tly">
@@ -672,7 +792,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIy-82-V7R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="696.79999999999995" y="601.34932533733138"/>
+            <point key="canvasLocation" x="142" y="600"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r3c-aU-qdx">
@@ -691,7 +811,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHp-bm-hxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4053.5999999999999" y="1244.527736131934"/>
+            <point key="canvasLocation" x="2646" y="1245"/>
         </scene>
     </scenes>
     <resources>

@@ -24,6 +24,14 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting initial textField date.
+        let format = DateFormatter()
+        format.locale = Locale.current
+        format.dateFormat = "EEEE, MMMM dd, yyyy"
+        let dateString = format.string(from: datePicker.date)
+        postDate = dateString
+        
+        textFieldCollection[3].text = postDate
         setUp()
     }
     
