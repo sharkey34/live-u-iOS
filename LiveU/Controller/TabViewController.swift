@@ -14,10 +14,14 @@ class TabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBar.items![0].selectedImage = #imageLiteral(resourceName: "ProfileIconSelected")
+        tabBar.items![1].selectedImage = #imageLiteral(resourceName: "AddIconSelected")
+        
         // Disabling access to the add viewController if the user is an Artist.
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         if currentUser.artist == "true"{
             tabBar.items![1].isEnabled = false
+            tabBar.items![1].image = nil
             tabBar.items![1].title = nil
         }
     }

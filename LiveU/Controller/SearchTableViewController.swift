@@ -13,11 +13,29 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     
     var searchController = UISearchController(searchResultsController: nil)
     var ref: DatabaseReference!
-    var fakeData = ["fish","cow","dumb"]
+    var localPosts: [Posts] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
 
+        
+        ref.child("posts").observe(.childAdded, with: { (snapshot) in
+            if let data = snapshot.value as? [String: Any] {
+                let title = data["title"] as? String ?? ""
+                let genre = data["genre"] as? String ?? ""
+                let location = data["location"] as? String ?? ""
+                let budget = data["budget"] as? String ?? ""
+                let date = data["date"] as? String ?? ""
+ 
+                print(date)
+                
+                self.localPosts.append(Posts(title: title, genre: genre, budget: budget, date: date, location: location))
+            }
+            self.tableView.reloadData()
+        }, withCancel: nil)
+        
         
         setUp()
         
@@ -30,30 +48,31 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
     // TableView Functions
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         tableView.rowHeight = 247
-        return fakeData.count
+        
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return localPosts.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
         
-        cell.imageView?.image = #imageLiteral(resourceName: "VenueProfile")
-    
+        cell.VenueImageView.image = #imageLiteral(resourceName: "VenueProfile")
+        cell.cellLabelCollection[0].text = localPosts[indexPath.row].title
+        cell.cellLabelCollection[1].text = localPosts[indexPath.row].budget
+        cell.cellLabelCollection[2].text = localPosts[indexPath.row].location
         
+        print("ho")
         return cell
     }
     
@@ -97,7 +116,6 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         ref = Database.database().reference()
         
         searchController.delegate = self
-        searchController.searchBar.text = "Search Gigs"
         searchController.dimsBackgroundDuringPresentation = false
         searchController.definesPresentationContext = true
         searchController.searchResultsUpdater = self
@@ -107,7 +125,7 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         navigationItem.hidesSearchBarWhenScrolling = false
         
         navigationItem.title = "Gigs"
-    
+        
     }
     
     // UISearchBar Callbacks

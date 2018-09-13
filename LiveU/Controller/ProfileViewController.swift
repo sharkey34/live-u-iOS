@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         
-        
         if let user = currentUser{
             if user.artist == "true"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -35,6 +34,14 @@ class ProfileViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarItem.image = #imageLiteral(resourceName: "ProfileIcon")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarItem.image = #imageLiteral(resourceName: "ProfileIconSelected")
     }
 
 }

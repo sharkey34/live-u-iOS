@@ -50,6 +50,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let user = Auth.auth().currentUser?.uid
                 
                 if let uid = user{
+                    
                     self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
                         let data = snapshot.value as? NSDictionary
                         let email = data?["email"] as? String ?? ""
