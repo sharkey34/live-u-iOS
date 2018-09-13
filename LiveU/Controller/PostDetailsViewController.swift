@@ -28,8 +28,6 @@ class PostDetailsViewController: UIViewController {
         labelCollection[2].text = localPost.genre
         labelCollection[3].text = localPost.budget
         labelCollection[4].text = localPost.location
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +43,9 @@ class PostDetailsViewController: UIViewController {
             ref.child("posts").child(localPost.uid).child("applied").updateChildValues([currentUser.uid: currentUser.fullName])
             ref.child("users").child(currentUser.uid).child("applied").updateChildValues([localPost.uid: localPost.title])
             
+            sender.isEnabled = false
+            sender.backgroundColor = UIColor.green
+            sender.titleLabel?.text = "Applied"
         }
     }
 }

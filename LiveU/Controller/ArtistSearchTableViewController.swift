@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+class ArtistSearchTableViewController: UITableViewController,UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     
     var searchController = UISearchController(searchResultsController: nil)
     var ref: DatabaseReference!
@@ -80,7 +80,9 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPost = localPosts[indexPath.row]
-        performSegue(withIdentifier: "details", sender: self)
+        
+        
+        self.performSegue(withIdentifier: "gigDetails", sender: self)
     }
     
 

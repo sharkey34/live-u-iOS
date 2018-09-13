@@ -12,9 +12,10 @@
 		4A4192ED214705B8009ED96B /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */; };
 		4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192EE21473D28009ED96B /* ProfileViewController.swift */; };
 		4A4192F72149A05C009ED96B /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192F62149A05C009ED96B /* SearchTableViewCell.swift */; };
-		4A4192F92149A5E5009ED96B /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192F82149A5E5009ED96B /* SearchTableViewController.swift */; };
+		4A4192F92149A5E5009ED96B /* ArtistSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192F82149A5E5009ED96B /* ArtistSearchTableViewController.swift */; };
 		4A4192FB2149E17D009ED96B /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192FA2149E17D009ED96B /* Posts.swift */; };
 		4A4192FF2149FC88009ED96B /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4192FE2149FC88009ED96B /* PostDetailsViewController.swift */; };
+		4A419301214AE616009ED96B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A419300214AE616009ED96B /* SearchViewController.swift */; };
 		4A6639882141707100914A02 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6639872141707100914A02 /* SignUpViewController.swift */; };
 		4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A663989214314A700914A02 /* ArtistProfileViewController.swift */; };
 		4A66398E214315A500914A02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66398D214315A500914A02 /* User.swift */; };
@@ -37,9 +38,10 @@
 		4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		4A4192EE21473D28009ED96B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4A4192F62149A05C009ED96B /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		4A4192F82149A5E5009ED96B /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		4A4192F82149A5E5009ED96B /* ArtistSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistSearchTableViewController.swift; sourceTree = "<group>"; };
 		4A4192FA2149E17D009ED96B /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		4A4192FE2149FC88009ED96B /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		4A419300214AE616009ED96B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4A6639872141707100914A02 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4A663989214314A700914A02 /* ArtistProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistProfileViewController.swift; sourceTree = "<group>"; };
 		4A66398D214315A500914A02 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -88,7 +90,8 @@
 				4A663989214314A700914A02 /* ArtistProfileViewController.swift */,
 				4A663991214335D100914A02 /* VenueProfileViewController.swift */,
 				4A4192EA2146A9CB009ED96B /* AddViewController.swift */,
-				4A4192F82149A5E5009ED96B /* SearchTableViewController.swift */,
+				4A419300214AE616009ED96B /* SearchViewController.swift */,
+				4A4192F82149A5E5009ED96B /* ArtistSearchTableViewController.swift */,
 				4A4192F62149A05C009ED96B /* SearchTableViewCell.swift */,
 				4A4192FE2149FC88009ED96B /* PostDetailsViewController.swift */,
 				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
@@ -275,9 +278,10 @@
 				4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */,
 				4A4192F72149A05C009ED96B /* SearchTableViewCell.swift in Sources */,
 				4A4192FF2149FC88009ED96B /* PostDetailsViewController.swift in Sources */,
+				4A419301214AE616009ED96B /* SearchViewController.swift in Sources */,
 				4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */,
 				4A66398E214315A500914A02 /* User.swift in Sources */,
-				4A4192F92149A5E5009ED96B /* SearchTableViewController.swift in Sources */,
+				4A4192F92149A5E5009ED96B /* ArtistSearchTableViewController.swift in Sources */,
 				4A663992214335D100914A02 /* VenueProfileViewController.swift in Sources */,
 				4A6F71B9213F66B4009C9B1C /* AppDelegate.swift in Sources */,
 			);
