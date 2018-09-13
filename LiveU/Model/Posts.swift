@@ -10,6 +10,7 @@ import Foundation
 
 class Posts {
     
+    var uid: String
     var title: String
     var genre: String
     var budget: String
@@ -17,8 +18,9 @@ class Posts {
     var location: String
     
     
-    init(title: String, genre: String, budget: String, date: String, location: String) {
+    init(uid: String, title: String, genre: String, budget: String, date: String, location: String) {
         
+        self.uid = uid
         self.title = title
         self.genre = genre
         self.budget = budget

@@ -97,10 +97,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             
             // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
             let key = ref.child("posts").childByAutoId().key
-            let postArray = ["title": textFieldCollection[0].text, "genre":textFieldCollection[1].text,"budget":textFieldCollection[2].text,"date":postDate, "location":fullAddress]
+            let postArray = ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress, "creator": currentUser.uid] as [String : Any]
+            
+            let userArray =  ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress] as [String:Any]
             
             let childUpdates = ["/posts/\(key)": postArray,
-                                "/users/\(currentUser.uid)/posts/\(key)/": postArray]
+                                "/users/\(currentUser.uid)/posts/\(key)/": userArray]
             ref.updateChildValues(childUpdates) {
                 (error:Error?, ref:DatabaseReference) in
                 if let error = error {

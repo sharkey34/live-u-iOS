@@ -14,6 +14,7 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     var searchController = UISearchController(searchResultsController: nil)
     var ref: DatabaseReference!
     var localPosts: [Posts] = []
+    var selectedPost: Posts?
     
     
     override func viewDidLoad() {
@@ -22,7 +23,9 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
 
         
         ref.child("posts").observe(.childAdded, with: { (snapshot) in
+            
             if let data = snapshot.value as? [String: Any] {
+                let uid = snapshot.key
                 let title = data["title"] as? String ?? ""
                 let genre = data["genre"] as? String ?? ""
                 let location = data["location"] as? String ?? ""
@@ -31,7 +34,7 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
  
                 print(date)
                 
-                self.localPosts.append(Posts(title: title, genre: genre, budget: budget, date: date, location: location))
+                self.localPosts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
             }
             self.tableView.reloadData()
         }, withCancel: nil)
@@ -72,30 +75,14 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         cell.cellLabelCollection[1].text = localPosts[indexPath.row].budget
         cell.cellLabelCollection[2].text = localPosts[indexPath.row].location
         
-        print("ho")
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPost = localPosts[indexPath.row]
+        performSegue(withIdentifier: "details", sender: self)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -130,9 +117,17 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     
     // UISearchBar Callbacks
     
+    //TODO: Milestone 3
+    
     func updateSearchResults(for searchController: UISearchController) {
         
 
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailsView = segue.destination as? PostDetailsViewController
+        detailsView?.localPost = selectedPost
+    }
+    
+    
 
 }

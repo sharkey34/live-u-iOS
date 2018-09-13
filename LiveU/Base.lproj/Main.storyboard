@@ -393,7 +393,6 @@
                                     <outletCollection property="cellLabelCollection" destination="ExN-ke-VBt" collectionClass="NSMutableArray" id="QgZ-5Y-uE7"/>
                                     <outletCollection property="cellLabelCollection" destination="iVe-FG-HiO" collectionClass="NSMutableArray" id="2Sa-yu-qxM"/>
                                     <outletCollection property="cellLabelCollection" destination="lwP-gr-0J5" collectionClass="NSMutableArray" id="R1u-tT-8uE"/>
-                                    <segue destination="IjV-iK-fyo" kind="show" identifier="postDetails" id="Fsy-Ss-u7k"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -403,6 +402,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="k4y-OC-Ca0"/>
+                    <connections>
+                        <segue destination="IjV-iK-fyo" kind="show" identifier="details" id="ZYc-OZ-jHK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAy-Oh-pQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -416,7 +418,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-fe-uax">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QSt-fe-uax">
                                 <rect key="frame" x="0.0" y="64" width="375" height="200"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KCq-pE-nYl">
@@ -485,18 +487,21 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-CY-8ns">
-                                        <rect key="frame" x="67" y="167" width="240" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </mapView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntG-Vb-xTj">
-                                        <rect key="frame" x="119" y="318" width="136" height="30"/>
+                                        <rect key="frame" x="119" y="329" width="136" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.2274509804" green="0.80000000000000004" blue="0.88235294119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Apply">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="applyButtonSelected:" destination="IjV-iK-fyo" eventType="touchUpInside" id="aOx-Pz-QRF"/>
+                                        </connections>
                                     </button>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-CY-8ns">
+                                        <rect key="frame" x="67" y="182" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </mapView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
