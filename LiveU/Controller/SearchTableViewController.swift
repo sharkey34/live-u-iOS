@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ArtistSearchTableViewController: UITableViewController,UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
     
     private var searchController = UISearchController(searchResultsController: nil)
     private var ref: DatabaseReference!
@@ -78,7 +78,7 @@ class ArtistSearchTableViewController: UITableViewController,UISearchBarDelegate
         if currentUser.artist == "true"{
             performSegue(withIdentifier: "gigDetails", sender: self)
         } else if currentUser.venue == "venue"{
-            
+            performSegue(withIdentifier: "toAppliedArtists", sender: self)
         }
     }
     
@@ -137,11 +137,10 @@ class ArtistSearchTableViewController: UITableViewController,UISearchBarDelegate
                                 let budget = postsData["budget"] as? String ?? ""
                                 let date = postsData["date"] as? String ?? ""
                                 
-                                if let d = postsData["applied"] as? [String:Any]{
-                                    print(d.keys)
-                                    
-                                    
-                                    
+                                if let d = postsData["applied"] as? [String:Any] {
+                                    for key in d.keys{
+                                        self.appiedArtist.append(key)
+                                    }
                                 }
                                 self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
                                 self.tableView.reloadData()
