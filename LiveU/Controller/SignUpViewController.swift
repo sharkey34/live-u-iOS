@@ -30,7 +30,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         ref = Database.database().reference()
         
         let gradiantLayer = CAGradientLayer()
@@ -182,4 +181,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         stateTextField.resignFirstResponder()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
 }

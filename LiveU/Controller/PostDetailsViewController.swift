@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 
 class PostDetailsViewController: UIViewController {
-    @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet var labelCollection: [UILabel]!
+    @IBOutlet weak var postImageView: UIImageView!
     
     var ref: DatabaseReference!
     var localPost: Posts!
@@ -44,8 +44,8 @@ class PostDetailsViewController: UIViewController {
             ref.child("users").child(currentUser.uid).child("applied").updateChildValues([localPost.uid: localPost.title])
             
             sender.isEnabled = false
-            sender.backgroundColor = UIColor.green
-            sender.titleLabel?.text = "Applied"
+            sender.backgroundColor = UIColor.black
+            sender.setTitle("Applied", for: .normal)
         }
     }
 }

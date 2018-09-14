@@ -12,21 +12,21 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
-
-        if currentUser?.artist == "true"{
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let artistSearch = storyboard.instantiateViewController(withIdentifier: "artistSearch")
-            self.addChildViewController(artistSearch)
-            navigationController?.setViewControllers([artistSearch], animated: true)
-            view.addSubview(artistSearch.view)
-            
-        } else {
-            
-        }
+//
+//        let currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+//        
+//
+//        if currentUser?.artist == "true"{
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let artistSearch = storyboard.instantiateViewController(withIdentifier: "artistSearch")
+//            self.addChildViewController(artistSearch)
+//            navigationController?.setViewControllers([artistSearch], animated: true)
+//            view.addSubview(artistSearch.view)
+//
+//        } else {
+//
+//        }
     }
     
     override func didReceiveMemoryWarning() {

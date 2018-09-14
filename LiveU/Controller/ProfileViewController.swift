@@ -14,6 +14,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         
         if let user = currentUser{
@@ -38,10 +40,12 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarItem.image = #imageLiteral(resourceName: "ProfileIcon")
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarItem.image = #imageLiteral(resourceName: "ProfileIconSelected")
+        UIApplication.shared.statusBarStyle = .default
     }
 
 }

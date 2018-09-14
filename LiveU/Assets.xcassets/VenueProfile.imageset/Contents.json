@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "artistProfile_PP$.png",
+      "filename" : "venueImage.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "artistProfile_PP$-1.png",
+      "filename" : "venueImage-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "artistProfile_PP$-2.png",
+      "filename" : "venueImage-2.png",
       "scale" : "3x"
     }
   ],
