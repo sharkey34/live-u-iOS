@@ -9,7 +9,11 @@
 import UIKit
 
 class AppliedArtistTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var artistImage: UIImageView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

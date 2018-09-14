@@ -16,8 +16,9 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     private var posts: [Posts] = []
     var selectedPost: Posts?
     private var currentUser: User!
-    private var localArtists: [User] = []
-    var appiedArtist: [String] = []
+    var appliedArtist: [String] = []
+    var test: [String:[String]] = [:]
+    var users: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +78,15 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         
         if currentUser.artist == "true"{
             performSegue(withIdentifier: "gigDetails", sender: self)
-        } else if currentUser.venue == "venue"{
-            performSegue(withIdentifier: "toAppliedArtists", sender: self)
+        } else if currentUser.venue == "true"{
+            
+            // Get the database information of the selected post here by using the uid of the selected post.
+            
+            let appliedArtistArray = test[posts[indexPath.row].uid]
+            if let arr = appliedArtistArray {
+                appliedArtist = arr
+            }
+            self.performSegue(withIdentifier: "toAppliedArtists", sender: self)
         }
     }
     
@@ -138,9 +146,11 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
                                 let date = postsData["date"] as? String ?? ""
                                 
                                 if let d = postsData["applied"] as? [String:Any] {
+                                    self.users = []
                                     for key in d.keys{
-                                        self.appiedArtist.append(key)
+                                        self.users.append(key)
                                     }
+                                    self.test[uid] = self.users
                                 }
                                 self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
                                 self.tableView.reloadData()
@@ -163,8 +173,6 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
-        
     }
     
     // UISearchBar Callbacks
@@ -176,7 +184,14 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let detailsView = segue.destination as? PostDetailsViewController
-        detailsView?.localPost = selectedPost
+        
+        if segue.identifier == "toAppliedArtists" {
+            let appliedView = segue.destination as? AppliedArtistsTableViewController
+            appliedView?.appliedArtists = appliedArtist
+            
+        } else if segue.identifier == "gigDetails" {
+            let detailsView = segue.destination as? PostDetailsViewController
+            detailsView?.localPost = selectedPost
+        }
     }
 }

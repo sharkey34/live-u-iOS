@@ -7,17 +7,46 @@
 //
 
 import UIKit
+import Firebase
 
 class AppliedArtistsTableViewController: UITableViewController {
 
+    private var ref: DatabaseReference?
+    var appliedArtists: [String] = []
+    private var artistArray: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()        
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        for user in appliedArtists {
+            
+            ref?.child("users").child(user).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let data = snapshot.value as? [String:Any]{
+        
+                    let uid = user
+                    let fullName = data["fullName"] as? String ?? ""
+                    let email = data["email"] as? String ?? ""
+                    let about = data["about"] as? String ?? ""
+                    let artist = data["artist"] as? String ?? ""
+                    let venue = data["venue"] as? String ?? ""
+                    let payPal = data["payPal"] as? String ?? ""
+                    let location = data["location"] as? String ?? ""
+                    let posts = data["posts"] as? [String] ?? nil
+                    
+                    self.artistArray.append(User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts))
+                    self.tableView.reloadData()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+                }
+            }, withCancel: { (error) in
+                print(error.localizedDescription)
+            })
+            
+            
+        }
+        
+        setup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,13 +57,17 @@ class AppliedArtistsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        tableView.rowHeight = 267
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Applied Artists"
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return artistArray.count
     }
 
     
@@ -42,7 +75,11 @@ class AppliedArtistsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AppliedArtistTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
         
         
-
+        cell.fullNameLabel.text = artistArray[indexPath.row].fullName
+        cell.artistImage.image = #imageLiteral(resourceName: "Artist Profile")
+        cell.emailLabel.text = artistArray[indexPath.row].email
+        cell.locationLabel.text = artistArray[indexPath.row].location
+        cell.locationLabel.text = artistArray[indexPath.row].location
 
         return cell
     }
@@ -82,4 +119,10 @@ class AppliedArtistsTableViewController: UITableViewController {
         return true
     }
     */
+    
+    func setup(){
+        
+        
+        
+    }
 }
