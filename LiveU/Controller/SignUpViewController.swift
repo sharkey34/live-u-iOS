@@ -83,8 +83,8 @@ class SignUpViewController: UIViewController {
                             let user = Auth.auth().currentUser?.uid
                             if let uid = user {
                                 self.currentUser = User(uid: uid,fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: nil, posts: nil)
-                                    UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
-                                    self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
+                                UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
+                                self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             } else {
                                 print("uid was nil")
                             }

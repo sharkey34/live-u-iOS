@@ -29,8 +29,6 @@ class PostDetailsViewController: UIViewController {
     @IBAction func applyButtonSelected(_ sender: UIButton) {
         // TODO: Save Correctly
         if let currentUser = UserDefaults.standard.currentUser(forKey: "currentUser") {
-
-            
             ref.child("posts").child(localPost.uid).child("applied").updateChildValues([currentUser.uid: currentUser.fullName])
             ref.child("users").child(currentUser.uid).child("applied").updateChildValues([localPost.uid: localPost.title])
             

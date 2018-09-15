@@ -32,6 +32,7 @@ class ProfileViewController: UIViewController {
     }
 
     func setup(){
+        
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         if let user = currentUser{
             if user.artist == "true"{

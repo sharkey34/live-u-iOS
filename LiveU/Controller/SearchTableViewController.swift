@@ -24,10 +24,6 @@ class SearchTableViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        locationManagerSetup()
         setUp()
         
         // Uncomment the following line to preserve selection between presentations
@@ -108,6 +104,7 @@ class SearchTableViewController: UITableViewController{
      */
     
     func setUp(){
+        checkLocationServices()
         ref = Database.database().reference()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         
@@ -197,6 +194,15 @@ class SearchTableViewController: UITableViewController{
     
     func locationManagerSetup(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled() {
+            locationManagerSetup()
+            LoMan.checkLocationPermissions(locationManager: locationManager)
+        } else {
+            //Display alert telling user to turn on location services
+        }
     }
 }
 

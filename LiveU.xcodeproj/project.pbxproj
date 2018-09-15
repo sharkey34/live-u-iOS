@@ -28,6 +28,8 @@
 		4A6F71C0213F66B4009C9B1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F71BF213F66B4009C9B1C /* Assets.xcassets */; };
 		4A6F71C3213F66B4009C9B1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A6F71C1213F66B4009C9B1C /* LaunchScreen.storyboard */; };
 		4AA3178B21405AB0007FDBD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AA3178A21405AB0007FDBD8 /* GoogleService-Info.plist */; };
+		4AC8DAC3214D94D4004FF25D /* LocationManagerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8DAC2214D94D4004FF25D /* LocationManagerStruct.swift */; };
+		4AC8DAC5214D9A33004FF25D /* AlertStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC8DAC4214D9A33004FF25D /* AlertStruct.swift */; };
 		55C64A60A1C659F1B22BB98A /* Pods_LiveU.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE2E35B306BF2749471EE1B /* Pods_LiveU.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		4A6F71C2213F66B4009C9B1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A6F71C4213F66B4009C9B1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AA3178A21405AB0007FDBD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4AC8DAC2214D94D4004FF25D /* LocationManagerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerStruct.swift; sourceTree = "<group>"; };
+		4AC8DAC4214D9A33004FF25D /* AlertStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStruct.swift; sourceTree = "<group>"; };
 		C5CB28EBBACA3E5A90D4855B /* Pods-LiveU.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveU.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveU/Pods-LiveU.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +102,8 @@
 				4A419302214C21A8009ED96B /* AppliedArtistsTableViewController.swift */,
 				4A419304214C21D4009ED96B /* AppliedArtistTableViewCell.swift */,
 				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
+				4AC8DAC2214D94D4004FF25D /* LocationManagerStruct.swift */,
+				4AC8DAC4214D9A33004FF25D /* AlertStruct.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,8 +288,10 @@
 				4A6F71BB213F66B4009C9B1C /* LoginViewController.swift in Sources */,
 				4A4192EF21473D28009ED96B /* ProfileViewController.swift in Sources */,
 				4A4192F72149A05C009ED96B /* SearchTableViewCell.swift in Sources */,
+				4AC8DAC5214D9A33004FF25D /* AlertStruct.swift in Sources */,
 				4A4192FF2149FC88009ED96B /* PostDetailsViewController.swift in Sources */,
 				4A66398A214314A700914A02 /* ArtistProfileViewController.swift in Sources */,
+				4AC8DAC3214D94D4004FF25D /* LocationManagerStruct.swift in Sources */,
 				4A66398E214315A500914A02 /* User.swift in Sources */,
 				4A4192F92149A5E5009ED96B /* SearchTableViewController.swift in Sources */,
 				4A663992214335D100914A02 /* VenueProfileViewController.swift in Sources */,

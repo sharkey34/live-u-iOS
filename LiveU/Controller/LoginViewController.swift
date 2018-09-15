@@ -11,10 +11,8 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-    
     private var ref: DatabaseReference!
     var currentUser: User!
-    
     
     @IBOutlet weak var mainBackground: UIImageView!
     @IBOutlet weak var liveIcon: UIImageView!
@@ -27,8 +25,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         setup()
     }
     
@@ -41,16 +37,12 @@ class LoginViewController: UIViewController {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if let _ = result{                
-                
+            if let _ = result{
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
-                
                 NotificationCenter.default.removeObserver(self)
                 let user = Auth.auth().currentUser?.uid
-                
                 if let uid = user{
-                    
                     self.ref.child("users").child(user!).observeSingleEvent(of: .value, with: { (snapshot) in
                         let data = snapshot.value as? NSDictionary
                         let email = data?["email"] as? String ?? ""
@@ -65,14 +57,12 @@ class LoginViewController: UIViewController {
                         self.currentUser = User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts)
                         
                         UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
-                        
-                        
                         self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                     })
                 } else {
                     print("uid was nil")
                 }
-          
+                
             } else {
                 if let err = error{
                     print(err.localizedDescription)
@@ -96,14 +86,12 @@ class LoginViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
     }
     
     @objc func keyboardChange(note: Notification){
-        
         if note.name == Notification.Name.UIKeyboardWillHide || note.name == Notification.Name.UIKeyboardDidChangeFrame{
             view.frame.origin.y = 0
         } else {
@@ -114,19 +102,14 @@ class LoginViewController: UIViewController {
     func setup(){
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
         ref = Database.database().reference()
-        
         logInButton.layer.cornerRadius = 0.5
         mainBackground.image = #imageLiteral(resourceName: "MainBackground")
         liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
-        
         subscribeUnsubscribe(bool: true)
     }
     
     func subscribeUnsubscribe(bool: Bool){
-        
-        
         if bool == true {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -140,7 +123,6 @@ class LoginViewController: UIViewController {
 // UitextField extension
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         switch textField.tag {
         case 0:
             emailTextField.resignFirstResponder()
@@ -152,7 +134,6 @@ extension LoginViewController: UITextFieldDelegate {
         }
         return true
     }
-    
 }
 
 
