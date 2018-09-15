@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     private var ref: DatabaseReference!
     var currentUser: User!
@@ -95,22 +95,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        switch textField.tag {
-        case 0:
-            emailTextField.resignFirstResponder()
-            passwordTextField.becomeFirstResponder()
-        case 1:
-            passwordTextField.resignFirstResponder()
-        default:
-            print("Wrong keyboard tag.")
-        }
-        return true
-    }
-    
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         emailTextField.resignFirstResponder()
@@ -152,3 +136,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
+
+// UitextField extension
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField.tag {
+        case 0:
+            emailTextField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        case 1:
+            passwordTextField.resignFirstResponder()
+        default:
+            print("Wrong keyboard tag.")
+        }
+        return true
+    }
+    
+}
+
+

@@ -9,12 +9,9 @@
 import UIKit
 import Firebase
 
-class AddViewController: UIViewController, UITextFieldDelegate {
-    
-    
+class AddViewController: UIViewController {
     @IBOutlet var textFieldCollection: [UITextField]!
     @IBOutlet var imageViewCollection: [UIImageView]!
-    
     private var currentUser: User!
     private var ref: DatabaseReference!
     private var postDate: String!
@@ -23,15 +20,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Setting initial textField date.
-        let format = DateFormatter()
-        format.locale = Locale.current
-        format.dateFormat = "EEEE, MMMM dd, yyyy"
-        let dateString = format.string(from: datePicker.date)
-        postDate = dateString
-        
-        textFieldCollection[3].text = postDate
         setUp()
     }
     
@@ -40,6 +28,13 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUp(){
+        // Setting initial textField date.
+        let format = DateFormatter()
+        format.locale = Locale.current
+        format.dateFormat = "EEEE, MMMM dd, yyyy"
+        let dateString = format.string(from: datePicker.date)
+        postDate = dateString
+        textFieldCollection[3].text = postDate
         ref  = Database.database().reference()
         
         // setting up datePicker
@@ -74,33 +69,24 @@ class AddViewController: UIViewController, UITextFieldDelegate {
                 imageViewCollection[field.offset].image = #imageLiteral(resourceName: "ExclamationPoint")
             }
         }
-        
         for image in imageViewCollection{
             if image.image != nil{
                 validPost = false
             }
         }
-        
         return validPost
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        
         let valid = validatePost()
-        
         if valid {
             currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-            
             fullAddress = textFieldCollection[4].text! + " " + textFieldCollection[5].text! + " " + textFieldCollection[6].text!
-            
             //TODO: Add completion block to display a message to the user when info is saved corrrectly.
-            
             // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
             let key = ref.child("posts").childByAutoId().key
             let postArray = ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress, "creator": currentUser.uid] as [String : Any]
-            
             let userArray =  ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress] as [String:Any]
-            
             let childUpdates = ["/posts/\(key)": postArray,
                                 "/users/\(currentUser.uid)/posts/\(key)/": userArray]
             ref.updateChildValues(childUpdates) {
@@ -121,22 +107,26 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     // DatePicker Callbacks
     @objc func datePickerValueChanged(_ sender: UIDatePicker) {
-        
         let format = DateFormatter()
         format.locale = Locale.current
         format.dateFormat = "EEEE, MMMM dd, yyyy"
         let dateString = format.string(from: datePicker.date)
         postDate = dateString
-        
         textFieldCollection[3].text = postDate
     }
     
-    // TextField Callbacks
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for field in textFieldCollection{
+            field.resignFirstResponder()
+        }
+    }
     
+    
+}
+
+// UITextField Extension
+extension AddViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        // TODO: Possible checks each time a text field is left.
-        
         switch textField.tag {
         case 0:
             textFieldCollection[0].resignFirstResponder()
@@ -158,16 +148,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         default:
             print("Tag out of bounds.")
         }
-        
-        
         return true
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for field in textFieldCollection{
-            field.resignFirstResponder()
-        }
-    }
-    
-    
 }

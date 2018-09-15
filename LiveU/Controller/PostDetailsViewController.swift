@@ -8,26 +8,18 @@
 
 import UIKit
 import Firebase
+import MapKit
 
 class PostDetailsViewController: UIViewController {
     @IBOutlet var labelCollection: [UILabel]!
     @IBOutlet weak var postImageView: UIImageView!
-    
+    @IBOutlet weak var mapView: MKMapView!
     var ref: DatabaseReference!
     var localPost: Posts!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ref = Database.database().reference()
-        
-        postImageView.image = #imageLiteral(resourceName: "VenueProfile")
-        
-        labelCollection[0].text = localPost.title
-        labelCollection[1].text = localPost.date
-        labelCollection[2].text = localPost.genre
-        labelCollection[3].text = localPost.budget
-        labelCollection[4].text = localPost.location
+        setup()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,7 +27,6 @@ class PostDetailsViewController: UIViewController {
     }
     
     @IBAction func applyButtonSelected(_ sender: UIButton) {
-        
         // TODO: Save Correctly
         if let currentUser = UserDefaults.standard.currentUser(forKey: "currentUser") {
 
@@ -47,5 +38,15 @@ class PostDetailsViewController: UIViewController {
             sender.backgroundColor = UIColor.black
             sender.setTitle("Applied", for: .normal)
         }
+    }
+    
+    func setup(){
+        ref = Database.database().reference()
+        postImageView.image = #imageLiteral(resourceName: "VenueProfile")
+        labelCollection[0].text = localPost.title
+        labelCollection[1].text = localPost.date
+        labelCollection[2].text = localPost.genre
+        labelCollection[3].text = localPost.budget
+        labelCollection[4].text = localPost.location
     }
 }

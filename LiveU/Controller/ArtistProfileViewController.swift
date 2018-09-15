@@ -15,11 +15,8 @@ import FirebaseAuth
 import Firebase
 
 class ArtistProfileViewController: UIViewController {
-    
-    
     var ref: DatabaseReference!
     var currentUser:User!
-    
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var aboutView: UIView!
@@ -31,19 +28,7 @@ class ArtistProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
-        if let user = currentUser{
-            profileImage.image = #imageLiteral(resourceName: "Artist Profile")
-            artistNameLabel.text = user.fullName
-            aboutTextField.text = currentUser.about
-        }
-        
-        ref = Database.database().reference()
-        
-        backGroundView.layer.cornerRadius = 15
-        aboutView.layer.cornerRadius = 15
+        setup()
     }
     
     
@@ -53,5 +38,14 @@ class ArtistProfileViewController: UIViewController {
     
     
     func setup(){
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        if let user = currentUser{
+            profileImage.image = #imageLiteral(resourceName: "Artist Profile")
+            artistNameLabel.text = user.fullName
+            aboutTextField.text = currentUser.about
+        }
+        ref = Database.database().reference()
+        backGroundView.layer.cornerRadius = 15
+        aboutView.layer.cornerRadius = 15
     }
 }

@@ -13,7 +13,14 @@ class TabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func setup(){
         tabBar.items![0].selectedImage = #imageLiteral(resourceName: "ProfileIconSelected")
         tabBar.items![1].selectedImage = #imageLiteral(resourceName: "AddIconSelected")
         
@@ -24,9 +31,5 @@ class TabViewController: UITabBarController {
             tabBar.items![1].image = nil
             tabBar.items![1].title = nil
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

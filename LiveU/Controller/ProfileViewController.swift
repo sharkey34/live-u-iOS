@@ -14,24 +14,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
-        if let user = currentUser{
-            if user.artist == "true"{
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let artistPro = storyboard.instantiateViewController(withIdentifier: "artistProfile")
-                self.addChildViewController(artistPro)
-                self.view.addSubview(artistPro.view)
-                                
-            } else if user.venue == "true"{
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let venuePro = storyboard.instantiateViewController(withIdentifier: "venueProfile")
-                self.addChildViewController(venuePro)
-                self.view.addSubview(venuePro.view)
-            }
-        }
+        setup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,4 +31,21 @@ class ProfileViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .default
     }
 
+    func setup(){
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        if let user = currentUser{
+            if user.artist == "true"{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let artistPro = storyboard.instantiateViewController(withIdentifier: "artistProfile")
+                self.addChildViewController(artistPro)
+                self.view.addSubview(artistPro.view)
+                
+            } else if user.venue == "true"{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let venuePro = storyboard.instantiateViewController(withIdentifier: "venueProfile")
+                self.addChildViewController(venuePro)
+                self.view.addSubview(venuePro.view)
+            }
+        }
+    }
 }

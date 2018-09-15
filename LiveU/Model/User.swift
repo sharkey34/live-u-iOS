@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class User:  NSObject, NSCoding {
-
-    
     var uid: String
     var fullName: String
     var email: String

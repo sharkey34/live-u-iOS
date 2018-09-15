@@ -95,9 +95,9 @@
 				4A4192F82149A5E5009ED96B /* SearchTableViewController.swift */,
 				4A4192F62149A05C009ED96B /* SearchTableViewCell.swift */,
 				4A4192FE2149FC88009ED96B /* PostDetailsViewController.swift */,
-				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
 				4A419302214C21A8009ED96B /* AppliedArtistsTableViewController.swift */,
 				4A419304214C21D4009ED96B /* AppliedArtistTableViewCell.swift */,
+				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

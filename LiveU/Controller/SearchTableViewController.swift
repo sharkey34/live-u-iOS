@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
-class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+class SearchTableViewController: UITableViewController{
     
     private var searchController = UISearchController(searchResultsController: nil)
     private var ref: DatabaseReference!
@@ -17,15 +18,16 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     var selectedPost: Posts?
     private var currentUser: User!
     var appliedArtist: [String] = []
-    var test: [String:[String]] = [:]
+    var dicArray: [String:[String]] = [:]
     var users: [String] = []
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         
-        
+        locationManagerSetup()
         setUp()
         
         // Uncomment the following line to preserve selection between presentations
@@ -37,6 +39,7 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
     }
     
     
@@ -79,10 +82,8 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         if currentUser.artist == "true"{
             performSegue(withIdentifier: "gigDetails", sender: self)
         } else if currentUser.venue == "true"{
-            
-            // Get the database information of the selected post here by using the uid of the selected post.
-            
-            let appliedArtistArray = test[posts[indexPath.row].uid]
+                        
+            let appliedArtistArray = dicArray[posts[indexPath.row].uid]
             if let arr = appliedArtistArray {
                 appliedArtist = arr
             }
@@ -111,58 +112,9 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         
         if currentUser.artist == "true"{
-            navigationItem.title = "Gigs"
-            searchController.searchBar.scopeButtonTitles = ["Location", "Genre"]
-            
-            ref.child("posts").observe(.childAdded, with: { (snapshot) in
-                
-                if let data = snapshot.value as? [String: Any] {
-                    let uid = snapshot.key
-                    let title = data["title"] as? String ?? ""
-                    let genre = data["genre"] as? String ?? ""
-                    let location = data["location"] as? String ?? ""
-                    let budget = data["budget"] as? String ?? ""
-                    let date = data["date"] as? String ?? ""
-                    
-                    self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
-                }
-                self.tableView.reloadData()
-            }, withCancel: nil)
-            
+            artistSetup()
         } else if currentUser.venue == "true"{
-            
-            navigationItem.title = "Artists"
-            searchController.searchBar.scopeButtonTitles = ["Artists", "My Posts"]
-            ref.child("users").child(currentUser.uid).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let data = snapshot.value as? [String: Any] {
-                    for keys in data.keys {
-                        self.ref.child("posts").child(keys).observeSingleEvent(of: .value, with: { (snapshot) in
-                            if let postsData = snapshot.value as? [String:Any]{
-                                let uid = snapshot.key
-                                let title = postsData["title"] as? String ?? ""
-                                let location = postsData["location"] as? String ?? ""
-                                let genre = postsData["genre"] as? String ?? ""
-                                let budget = postsData["budget"] as? String ?? ""
-                                let date = postsData["date"] as? String ?? ""
-                                
-                                if let d = postsData["applied"] as? [String:Any] {
-                                    self.users = []
-                                    for key in d.keys{
-                                        self.users.append(key)
-                                    }
-                                    self.test[uid] = self.users
-                                }
-                                self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
-                                self.tableView.reloadData()
-                            }
-                        }, withCancel: { (error) in
-                            print(error.localizedDescription)
-                        })
-                    }
-                }
-            }) { (error) in
-                print(error.localizedDescription)
-            }
+            venueSetup()
         } else {
             print("Unable to determine UserType")
         }
@@ -175,13 +127,61 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    // UISearchBar Callbacks
     
     //TODO: Milestone 3
+    func artistSetup(){
+        navigationItem.title = "Gigs"
+        searchController.searchBar.scopeButtonTitles = ["Location", "Genre"]
+        
+        ref.child("posts").observe(.childAdded, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String: Any] {
+                let uid = snapshot.key
+                let title = data["title"] as? String ?? ""
+                let genre = data["genre"] as? String ?? ""
+                let location = data["location"] as? String ?? ""
+                let budget = data["budget"] as? String ?? ""
+                let date = data["date"] as? String ?? ""
+                
+                self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
+            }
+            self.tableView.reloadData()
+        }, withCancel: nil)
+    }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        
+    
+    func venueSetup(){
+        navigationItem.title = "Artists"
+        searchController.searchBar.scopeButtonTitles = ["My Posts", "Artists"]
+        ref.child("users").child(currentUser.uid).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let data = snapshot.value as? [String: Any] {
+                for keys in data.keys {
+                    self.ref.child("posts").child(keys).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let postsData = snapshot.value as? [String:Any]{
+                            let uid = snapshot.key
+                            let title = postsData["title"] as? String ?? ""
+                            let location = postsData["location"] as? String ?? ""
+                            let genre = postsData["genre"] as? String ?? ""
+                            let budget = postsData["budget"] as? String ?? ""
+                            let date = postsData["date"] as? String ?? ""
+                            if let d = postsData["applied"] as? [String:Any] {
+                                self.users = []
+                                for key in d.keys{
+                                    self.users.append(key)
+                                }
+                                self.dicArray[uid] = self.users
+                            }
+                            self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
+                            self.tableView.reloadData()
+                        }
+                    }, withCancel: { (error) in
+                        print(error.localizedDescription)
+                    })
+                }
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -194,4 +194,30 @@ class SearchTableViewController: UITableViewController,UISearchBarDelegate, UISe
             detailsView?.localPost = selectedPost
         }
     }
+    
+    func locationManagerSetup(){
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+}
+
+// Search Controller extension
+extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        
+    }
+}
+
+// Location Manager extension
+extension SearchTableViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+    }
+    
 }

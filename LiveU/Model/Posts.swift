@@ -27,6 +27,4 @@ class Posts {
         self.date = date
         self.location = location
     }
-    
-    
 }
