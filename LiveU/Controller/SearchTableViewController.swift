@@ -87,22 +87,6 @@ class SearchTableViewController: UITableViewController{
         }
     }
     
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
     func setUp(){
         checkLocationServices()
         ref = Database.database().reference()
@@ -192,6 +176,25 @@ class SearchTableViewController: UITableViewController{
         }
     }
     
+    // Location Manger Functions
+    func checkLocationPermissions(){
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            // logic here
+            break
+        case .authorizedAlways:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Let user know about possible parental restrictions
+            break
+        case . denied:
+            // Display alert telling the user to authorize permissions
+            break
+        }
+    }
+    
     func locationManagerSetup(){
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
@@ -199,7 +202,7 @@ class SearchTableViewController: UITableViewController{
     func checkLocationServices(){
         if CLLocationManager.locationServicesEnabled() {
             locationManagerSetup()
-            LoMan.checkLocationPermissions(locationManager: locationManager)
+            checkLocationPermissions()
         } else {
             //Display alert telling user to turn on location services
         }
@@ -223,6 +226,10 @@ extension SearchTableViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
     }
     

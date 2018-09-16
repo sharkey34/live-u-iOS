@@ -13,17 +13,17 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import CoreLocation
 
 class ArtistProfileViewController: UIViewController {
     var ref: DatabaseReference!
     var currentUser:User!
+    let locationManager = CLLocationManager()
+    
+    @IBOutlet var labelCollection: [UILabel]!
     @IBOutlet weak var backGroundView: UIView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var aboutView: UIView!
-    @IBOutlet weak var artistNameLabel: UILabel!
-    @IBOutlet weak var schoolLabelName: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var aboutTextField: UITextView!
     
     override func viewDidLoad() {
@@ -38,14 +38,47 @@ class ArtistProfileViewController: UIViewController {
     
     
     func setup(){
+        checkLocationServices()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         if let user = currentUser{
             profileImage.image = #imageLiteral(resourceName: "Artist Profile")
-            artistNameLabel.text = user.fullName
+            labelCollection[0].text = user.fullName
             aboutTextField.text = currentUser.about
         }
         ref = Database.database().reference()
         backGroundView.layer.cornerRadius = 15
         aboutView.layer.cornerRadius = 15
+    }
+    
+    // Location Manager Functions
+    func checkLocationPermissions(){
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            // logic here
+            break
+        case .authorizedAlways:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            // Let user know about possible parental restrictions
+            break
+        case . denied:
+            // Display alert telling the user to authorize permissions
+            break
+        }
+    }
+    
+    func locationManagerSetup(){
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func checkLocationServices(){
+        if CLLocationManager.locationServicesEnabled() {
+            locationManagerSetup()
+            checkLocationPermissions()
+        } else {
+            //Display alert telling user to turn on location services
+        }
     }
 }
