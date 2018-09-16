@@ -17,6 +17,8 @@ class VenueProfileViewController: UIViewController {
     private var ref: DatabaseReference!
     var currentUser:User!
     let locationManager = CLLocationManager()
+    var lat: CLLocationDegrees?
+    var long: CLLocationDegrees?
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -47,6 +49,9 @@ class VenueProfileViewController: UIViewController {
         ref = Database.database().reference()
         backgroundView.layer.cornerRadius = 15
         mapView.layer.cornerRadius = 15
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(launchMaps(sender:)))
+        mapView.addGestureRecognizer(gesture)
     }
     // Location Manager Functions
     func checkLocationPermissions(){
@@ -93,21 +98,38 @@ class VenueProfileViewController: UIViewController {
             }
             if let placemarks = placemarks?.first {
            
-              let lat = placemarks.location?.coordinate.latitude
-              let long = placemarks.location?.coordinate.longitude
+              self.lat = placemarks.location?.coordinate.latitude
+              self.long = placemarks.location?.coordinate.longitude
                 // Alert the user
                 let rgn = MKCoordinateRegionMakeWithDistance(
-                    CLLocationCoordinate2DMake(lat!, long!), 350, 350)
+                    CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
                 let venue = MKPointAnnotation()
                 venue.title = self.currentUser.fullName
-                venue.coordinate = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
+                venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)
                 self.mapView.addAnnotation(venue)
                 self.mapView.setRegion(rgn, animated: true)
             }
         }
         
     }
-
+    
+    @objc func launchMaps(sender: UITapGestureRecognizer){
+        
+        let rgn = MKCoordinateRegionMakeWithDistance(
+            CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+        let venue = MKPointAnnotation()
+        venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)
+        self.mapView.addAnnotation(venue)
+        self.mapView.setRegion(rgn, animated: true)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: rgn.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: rgn.span)
+        ]
+        
+        let mark = MKPlacemark(coordinate: venue.coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: mark)
+        MKMapItem.openMaps(with: [mapItem], launchOptions: options)
+    }
 }
 
 extension VenueProfileViewController: MKMapViewDelegate {

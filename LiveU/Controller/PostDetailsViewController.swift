@@ -61,7 +61,6 @@ class PostDetailsViewController: UIViewController {
         labelCollection[4].text = localPost.location
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(launchMaps(sender:)))
-        
         mapView.addGestureRecognizer(gesture)
     }
     
