@@ -81,7 +81,7 @@ class PostDetailsViewController: UIViewController {
     
     func centerViewOnVenueLocation(){
         // Get Location coordinates from venue.
-        geocoder.geocodeAddressString("46 N Orange Ave, Orlando, FL") { (placemarks, error) in
+        geocoder.geocodeAddressString(localPost.location) { (placemarks, error) in
             if let _ = error {
                 
                 // Alert the user
@@ -91,8 +91,6 @@ class PostDetailsViewController: UIViewController {
                 
                 self.lat = placemarks.location?.coordinate.latitude
                 self.long = placemarks.location?.coordinate.longitude
-                
-                
                 let rgn = MKCoordinateRegionMakeWithDistance(
                     CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
                 let venue = MKPointAnnotation()
@@ -103,20 +101,26 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
+    func getDistance(){
+        
+//        let rgn = MKCoordinateRegionMakeWithDistance(
+//            CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+//        
+//        let mark = MKPlacemark(coordinate: rgn.center, addressDictionary: nil)
+    }
+    
     @objc func launchMaps(sender: UITapGestureRecognizer){
         
         let rgn = MKCoordinateRegionMakeWithDistance(
             CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
-        let venue = MKPointAnnotation()
-        venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)
-        self.mapView.addAnnotation(venue)
         self.mapView.setRegion(rgn, animated: true)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: rgn.center),
             MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: rgn.span)
         ]
+        let mark = MKPlacemark(coordinate: rgn.center, addressDictionary: nil)
         
-        let mark = MKPlacemark(coordinate: venue.coordinate, addressDictionary: nil)
+        
         let mapItem = MKMapItem(placemark: mark)
         MKMapItem.openMaps(with: [mapItem], launchOptions: options)
     }
@@ -124,6 +128,8 @@ class PostDetailsViewController: UIViewController {
 
 extension PostDetailsViewController: MKMapViewDelegate {
     
-    
+    func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
+        print(error.localizedDescription)
+    }
     
 }

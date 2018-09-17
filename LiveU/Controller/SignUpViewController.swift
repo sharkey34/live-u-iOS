@@ -26,6 +26,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var fullNameTextField: UITextField!
     @IBOutlet weak var cityExclamation: UIImageView!
     @IBOutlet weak var stateExclamation: UIImageView!
+    @IBOutlet weak var streetAddressTextField: UITextField!
+    @IBOutlet weak var streetExclamationPoint: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,9 @@ class SignUpViewController: UIViewController {
         var venue = ""
         var about = ""
         
-        guard let email = emailTextField.text, let password = passwordTextField.text, let fullName = fullNameTextField.text, let city = cityTextField.text, let state = stateTextField.text else {return}
+        guard let email = emailTextField.text, let password = passwordTextField.text, let fullName = fullNameTextField.text, let city = cityTextField.text, let state = stateTextField.text, let street = streetAddressTextField.text else {return}
         
-        if email.isEmpty == false, password.isEmpty == false, fullName.isEmpty == false, city.isEmpty == false, state.isEmpty == false {
+        if email.isEmpty == false, password.isEmpty == false, fullName.isEmpty == false, city.isEmpty == false, state.isEmpty == false, street.isEmpty == false {
             do {
                 // Using REGEX to validate email.
                 let regex = try NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -79,10 +81,12 @@ class SignUpViewController: UIViewController {
                                 artist = "false"
                                 about = "\(fullName) is an established local business that prides itself on supporting the local community while giving their customers the best experience available."
                             }
-                            self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "about": about, "artist":artist, "venue": venue, "city":city, "state": state])
+                                 let location = street + ", " + city + ", " + state
+                            self.ref.child("users").child((result?.user.uid)!).setValue(["email":email, "fullName": fullName, "about": about, "artist":artist, "venue": venue, "location": location])
                             let user = Auth.auth().currentUser?.uid
                             if let uid = user {
-                                self.currentUser = User(uid: uid,fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: nil, posts: nil)
+                                
+                                self.currentUser = User(uid: uid,fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: nil, profileImage: nil, location: location, posts: nil, distance: nil)
                                 UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                                 self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)
                             } else {

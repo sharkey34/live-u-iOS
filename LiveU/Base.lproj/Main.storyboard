@@ -736,27 +736,34 @@
                                 <color key="tintColor" red="0.22745098039215686" green="0.80000000000000004" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
                             <textField opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FgZ-2l-Ms2">
-                                <rect key="frame" x="56" y="324" width="173" height="30"/>
+                                <rect key="frame" x="56" y="366" width="173" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ep-U0-M4x">
-                                <rect key="frame" x="267" y="324" width="52" height="30"/>
+                                <rect key="frame" x="267" y="366" width="52" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30E-qv-cuw">
-                                <rect key="frame" x="298" y="331" width="18" height="16"/>
+                                <rect key="frame" x="298" y="373" width="18" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wyM-fi-0iu">
-                                <rect key="frame" x="204" y="331" width="18" height="16"/>
+                                <rect key="frame" x="204" y="373" width="18" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <textField opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tHK-EW-4Qe">
+                                <rect key="frame" x="56" y="318" width="263" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W82-UV-dZe" userLabel="Sign In Button">
                                 <rect key="frame" x="56" y="445" width="262.5" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -776,6 +783,10 @@
                                     <action selector="CancelPressed:" destination="7f3-JY-1H2" eventType="touchUpInside" id="NDv-qj-mUi"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="52f-wR-QIN">
+                                <rect key="frame" x="292" y="325" width="18" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OWu-5m-Sow"/>
@@ -789,13 +800,24 @@
                         <outlet property="fullNameTextField" destination="qNd-Rg-fOP" id="Cl6-r8-F8Y"/>
                         <outlet property="passwordExclamation" destination="ldY-jt-VhG" id="gxq-oZ-Es5"/>
                         <outlet property="passwordTextField" destination="wEB-8R-IJi" id="mJ0-Yt-o8K"/>
+                        <outlet property="searchDisplayController" destination="W85-Yq-sU8" id="5th-Hm-drf"/>
                         <outlet property="stateExclamation" destination="30E-qv-cuw" id="5ve-kf-ld3"/>
                         <outlet property="stateTextField" destination="7ep-U0-M4x" id="arB-ix-Xcf"/>
+                        <outlet property="streetAddressTextField" destination="tHK-EW-4Qe" id="OIL-18-4hc"/>
+                        <outlet property="streetExclamationPoint" destination="52f-wR-QIN" id="Tcc-l9-C8a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bhf-7A-kzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="W85-Yq-sU8">
+                    <connections>
+                        <outlet property="delegate" destination="7f3-JY-1H2" id="FPx-Eb-JQH"/>
+                        <outlet property="searchContentsController" destination="7f3-JY-1H2" id="6Sa-AV-5I8"/>
+                        <outlet property="searchResultsDataSource" destination="7f3-JY-1H2" id="QIK-4F-xpT"/>
+                        <outlet property="searchResultsDelegate" destination="7f3-JY-1H2" id="deR-ar-C9w"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-513" y="600"/>
+            <point key="canvasLocation" x="-514.39999999999998" y="599.55022488755628"/>
         </scene>
         <!--Item-->
         <scene sceneID="AQb-Ra-tly">

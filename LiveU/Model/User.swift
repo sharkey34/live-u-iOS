@@ -20,6 +20,7 @@ class User:  NSObject, NSCoding {
     var profileImage: UIImage!
     var location: String!
     var posts: [String]!
+    var distance: Double!
     
     func encode(with aCoder: NSCoder) {
         
@@ -33,6 +34,7 @@ class User:  NSObject, NSCoding {
         aCoder.encode(profileImage, forKey: "profileImage")
         aCoder.encode(location, forKey: "location")
         aCoder.encode(posts, forKey: "posts")
+        aCoder.encode(posts, forKey: "distance")
 
     }
     
@@ -48,9 +50,10 @@ class User:  NSObject, NSCoding {
         self.profileImage = (aDecoder.decodeObject(forKey: "profileImage") as? UIImage)
         self.location = (aDecoder.decodeObject(forKey: "location") as? String)
         self.posts = (aDecoder.decodeObject(forKey: "posts") as? [String])
+        self.distance = (aDecoder.decodeObject(forKey: "distance") as? Double)
     }
     
-    init(uid: String,fullName: String, email: String,about: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?, posts: [String]?) {
+    init(uid: String,fullName: String, email: String,about: String, artist: String?, venue: String?, payPal: String?, profileImage: UIImage?, location: String?, posts: [String]?, distance: Double?) {
         
         self.uid = uid
         self.fullName = fullName
@@ -62,6 +65,6 @@ class User:  NSObject, NSCoding {
         self.profileImage = profileImage
         self.location = location
         self.posts = posts
-        
+        self.distance = distance
     }
 }

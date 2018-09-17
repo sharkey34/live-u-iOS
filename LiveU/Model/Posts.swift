@@ -16,9 +16,10 @@ class Posts {
     var budget: String
     var date : String
     var location: String
+    var distance: Double!
     
     
-    init(uid: String, title: String, genre: String, budget: String, date: String, location: String) {
+    init(uid: String, title: String, genre: String, budget: String, date: String, location: String, distance: Double?) {
         
         self.uid = uid
         self.title = title
@@ -26,5 +27,6 @@ class Posts {
         self.budget = budget
         self.date = date
         self.location = location
+        self.distance = distance
     }
 }

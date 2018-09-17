@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
                         let location = data?["location"] as? String ?? nil
                         let posts = data?["posts"] as? [String] ?? nil
                         
-                        self.currentUser = User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts)
+                        self.currentUser = User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts, distance: nil)
                         
                         UserDefaults.standard.set(currentUser: self.currentUser, forKey: "currentUser")
                         self.parent?.performSegue(withIdentifier: "toProfile", sender: sender)

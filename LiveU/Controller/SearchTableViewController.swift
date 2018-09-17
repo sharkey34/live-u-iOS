@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+import MapKit
 
 class SearchTableViewController: UITableViewController{
     
@@ -21,11 +22,14 @@ class SearchTableViewController: UITableViewController{
     var dicArray: [String:[String]] = [:]
     var users: [String] = []
     let locationManager = CLLocationManager()
+    var geocoder = CLGeocoder()
+    var sortedArray: [Posts] = []
+    var userLoc: CLLocation?
+    var newPostAray: [Posts]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -55,22 +59,23 @@ class SearchTableViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
         
-        if currentUser.artist == "true"{
-            cell.postImageView.image = #imageLiteral(resourceName: "VenueProfile")
-            cell.cellLabelCollection[1].text = posts[indexPath.row].budget
-            cell.cellLabelCollection[2].text = posts[indexPath.row].location
-        } else if currentUser.venue == "true" {
-            cell.postImageView.image = #imageLiteral(resourceName: "Artist Profile")
-            cell.cellLabelCollection[1].text = posts[indexPath.row].genre
-            cell.cellLabelCollection[2].text = posts[indexPath.row].date
+        if sortedArray.isEmpty == false {
+            if currentUser.artist == "true"{
+                cell.postImageView.image = #imageLiteral(resourceName: "VenueProfile")
+                cell.cellLabelCollection[1].text = sortedArray[indexPath.row].budget
+                cell.cellLabelCollection[2].text = sortedArray[indexPath.row].distance.description
+            } else if currentUser.venue == "true" {
+                cell.postImageView.image = #imageLiteral(resourceName: "Artist Profile")
+                cell.cellLabelCollection[1].text = sortedArray[indexPath.row].genre
+                cell.cellLabelCollection[2].text = sortedArray[indexPath.row].distance.description
+            }
+            
+            cell.cellLabelCollection[0].text = sortedArray[indexPath.row].title
         }
-        
-        cell.cellLabelCollection[0].text = posts[indexPath.row].title
-        
-        
         
         return cell
     }
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPost = posts[indexPath.row]
@@ -112,6 +117,8 @@ class SearchTableViewController: UITableViewController{
     //TODO: Milestone 3
     func artistSetup(){
         navigationItem.title = "Gigs"
+        // Get an array of distances from the users current location and sort
+        
         searchController.searchBar.scopeButtonTitles = ["Location", "Genre"]
         
         ref.child("posts").observe(.childAdded, with: { (snapshot) in
@@ -124,9 +131,10 @@ class SearchTableViewController: UITableViewController{
                 let budget = data["budget"] as? String ?? ""
                 let date = data["date"] as? String ?? ""
                 
-                self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
+                self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location, distance: nil))
             }
-            self.tableView.reloadData()
+            self.sortPosts()
+             self.tableView.reloadData()
         }, withCancel: nil)
     }
     
@@ -152,7 +160,7 @@ class SearchTableViewController: UITableViewController{
                                 }
                                 self.dicArray[uid] = self.users
                             }
-                            self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location))
+                            self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location, distance: nil))
                             self.tableView.reloadData()
                         }
                     }, withCancel: { (error) in
@@ -181,6 +189,7 @@ class SearchTableViewController: UITableViewController{
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             // logic here
+            locationManager.startUpdatingLocation()
             break
         case .authorizedAlways:
             break
@@ -216,21 +225,63 @@ extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdatin
         
         
     }
+    
+    func sortPosts(){
+        // loop through each post and get the distance from and update the posts distance variable.
+        
+        DispatchQueue.main.async {
+            for post in self.posts {
+                
+                self.geocoder.geocodeAddressString(post.location) { (placemarks, error) in
+                    
+                    if let _ = error {
+                        
+                        // Alert the user
+                        return
+                    }
+                    if let placemarks = placemarks?.first {
+                        
+                        let lat = placemarks.location?.coordinate.latitude
+                        let long = placemarks.location?.coordinate.longitude
+                        // Alert the user
+                        
+                        let postLoc = CLLocation(latitude: lat!, longitude: long!)
+                        //                    Get users current location
+                        
+                        let distance = self.userLoc?.distance(from: postLoc)
+                        let newdistance:Double = distance!
+                        
+                        post.distance = newdistance
+                        self.newPostAray?.append(post)
+                        
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+            
+            // then sort the array of posts by distance and reload the tableVIew.
+            
+            
+            // MARK: Found nil
+            self.sortedArray = self.posts.sorted(by: {$0.distance < $1.distance})
+            print(self.sortedArray[0].distance)
+        }
+    }
 }
 
 // Location Manager extension
 extension SearchTableViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        userLoc = locations[0]
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+        checkLocationServices()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+        print(error.localizedDescription)
     }
     
 }

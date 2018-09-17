@@ -103,7 +103,7 @@ class AppliedArtistsTableViewController: UITableViewController {
                     let payPal = data["payPal"] as? String ?? ""
                     let location = data["location"] as? String ?? ""
                     let posts = data["posts"] as? [String] ?? nil
-                    self.artistArray.append(User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts))
+                    self.artistArray.append(User(uid: uid, fullName: fullName, email: email, about: about, artist: artist, venue: venue, payPal: payPal, profileImage: nil, location: location, posts: posts, distance: nil))
                     self.tableView.reloadData()
                 }
             }, withCancel: { (error) in
