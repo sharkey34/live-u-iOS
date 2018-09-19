@@ -15,5 +15,6 @@ struct Alert {
     
     static func basicAlert(){
         
+        // Create functions to create alerts.
     }
 }

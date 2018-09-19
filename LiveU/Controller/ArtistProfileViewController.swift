@@ -41,7 +41,7 @@ class ArtistProfileViewController: UIViewController {
         checkLocationServices()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         if let user = currentUser{
-            profileImage.image = #imageLiteral(resourceName: "Artist Profile")
+            profileImage.image = #imageLiteral(resourceName: "ArtistProfile")
             labelCollection[0].text = user.fullName
             aboutTextField.text = currentUser.about
         }

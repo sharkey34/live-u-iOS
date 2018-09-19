@@ -18,16 +18,11 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var emailExclamation: UIImageView!
-    @IBOutlet weak var passwordExclamation: UIImageView!
     @IBOutlet weak var artistVenueControl: UISegmentedControl!
     @IBOutlet weak var stateTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var fullNameTextField: UITextField!
-    @IBOutlet weak var cityExclamation: UIImageView!
-    @IBOutlet weak var stateExclamation: UIImageView!
     @IBOutlet weak var streetAddressTextField: UITextField!
-    @IBOutlet weak var streetExclamationPoint: UIImageView!
     @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
@@ -58,14 +53,14 @@ class SignUpViewController: UIViewController {
                     print("Valid email found.")
                     valid += 1
                 } else {
-                    emailExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
+                    // ALERT
                 }
                 // Password Validation
                 if password.count >= 8 {
                     print("Valid Password entered.")
                     valid += 1
                 } else {
-                    passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
+                    // ALERT
                 }
                 
                 //MARK: Change back to bool when encoding is figured out.
@@ -105,8 +100,8 @@ class SignUpViewController: UIViewController {
             }
         } else {
             print("Please don't leave Fields blank.")
-            passwordExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
-            emailExclamation.image = #imageLiteral(resourceName: "ExclamationPoint")
+            // ALERT
+            // ALERT
         }
     }
     

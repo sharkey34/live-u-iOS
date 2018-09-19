@@ -15,34 +15,35 @@ class SearchTableViewController: UITableViewController{
     
     private var searchController = UISearchController(searchResultsController: nil)
     private var ref: DatabaseReference!
-    private var posts: [Posts] = []
-    var selectedPost: Posts?
+    private var userLoc: CLLocation?
+    private let locationManager = CLLocationManager()
+    private let formatter = MKDistanceFormatter()
     private var currentUser: User!
+    
+    // Hold users selections
+    var selectedPost: Posts?
     var appliedArtist: [String] = []
+    
+    // Used specifically for getting the applied users
     var dicArray: [String:[String]] = [:]
-    var users: [String] = []
-    let locationManager = CLLocationManager()
-    var geocoder = CLGeocoder()
-    var userLoc: CLLocation?
+    private var users: [String] = []
+    
+    // Arrays holding data
+    private var posts: [Posts] = []
+    private var sortedArray: [Posts] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     
     // TableView Functions
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         tableView.rowHeight = 247
         return 1
@@ -55,13 +56,13 @@ class SearchTableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
-        
             if currentUser.artist == "true"{
                 cell.postImageView.image = #imageLiteral(resourceName: "VenueProfile")
+                let d = formatter.string(fromDistance: posts[indexPath.row].distance)
                 cell.cellLabelCollection[1].text = posts[indexPath.row].budget
-                cell.cellLabelCollection[2].text = posts[indexPath.row].distance.description
+                cell.cellLabelCollection[2].text = d
             } else if currentUser.venue == "true" {
-                cell.postImageView.image = #imageLiteral(resourceName: "Artist Profile")
+                cell.postImageView.image = #imageLiteral(resourceName: "ArtistProfile")
                 cell.cellLabelCollection[1].text = posts[indexPath.row].genre
                 cell.cellLabelCollection[2].text = posts[indexPath.row].date
             }
@@ -87,12 +88,36 @@ class SearchTableViewController: UITableViewController{
             self.performSegue(withIdentifier: "toAppliedArtists", sender: self)
         }
     }
+    // Setup of the UISearchController
+    func setUpSearchController(){
+        searchController.delegate = self
+        searchController.searchBar.delegate = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     
-    //TODO: Milestone 3
+    func setUp(){
+        checkLocationServices()
+        ref = Database.database().reference()
+        setUpSearchController()
+        formatter.units = MKDistanceFormatterUnits.imperial
+        formatter.unitStyle = .full
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        
+        if currentUser.artist == "true"{
+            artistSetup()
+        } else if currentUser.venue == "true"{
+            venueSetup()
+        } else {
+            print("Unable to determine UserType")
+        }
+    }
+    
     func artistSetup(){
         navigationItem.title = "Gigs"
-        // Get an array of distances from the users current location and sort
-        
         searchController.searchBar.scopeButtonTitles = ["Location", "Genre"]
         
         ref.child("posts").observe(.childAdded, with: { (snapshot) in
@@ -152,26 +177,17 @@ class SearchTableViewController: UITableViewController{
         }
     }
     
-    func setUp(){
-        checkLocationServices()
-        ref = Database.database().reference()
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
-        if currentUser.artist == "true"{
-            artistSetup()
-        } else if currentUser.venue == "true"{
-            venueSetup()
-        } else {
-            print("Unable to determine UserType")
+    
+    // Function getting the distance from the users location and sorting the distances returned.
+    func sortPosts(){
+        for post in posts {
+            let postLoc = CLLocation(latitude: post.lat, longitude: post.long)
+            let distance = userLoc?.distance(from: postLoc)
+            post.distance = distance!
         }
-        
-        searchController.delegate = self
-        searchController.searchBar.delegate = self
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.definesPresentationContext = true
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+        sortedArray = posts.sorted(by: {$0.distance < $1.distance})
+        posts = sortedArray
+        tableView.reloadData()
     }
     
     
@@ -209,40 +225,8 @@ class SearchTableViewController: UITableViewController{
             //Display alert telling user to turn on location services
         }
     }
-    func sortPosts(){
-        var sortedArray: [Posts] = []
-        let formatter = MKDistanceFormatter()
-        formatter.units = MKDistanceFormatterUnits.imperial
-        formatter.unitStyle = .full
-        
-        for post in posts {
-            
-            // MARK: Gets the driving distance but uses a closure.
-            
-            
-            //                let request = MKDirectionsRequest()
-            //                let source = MKPlacemark(coordinate: userLoc!.coordinate)
-            //                let p = CLLocationCoordinate2DMake(post.lat, post.long)
-            //                let destination = MKPlacemark(coordinate: p)
-            //                request.source = MKMapItem(placemark: source)
-            //                request.destination = MKMapItem(placemark: destination)
-            //                request.transportType = .automobile
-            //
-            //                let directions = MKDirections(request: request)
-            
-            
-            // Sorting distance needs to be corrected.
-            let postLoc = CLLocation(latitude: post.lat, longitude: post.long)
-            let distance = userLoc?.distance(from: postLoc)
-            let d = formatter.string(fromDistance: distance!)
-//            let p = formatter.distance(from: d)
-            post.distance = d
-        }
-        sortedArray = posts.sorted(by: {$0.distance < $1.distance})
-        posts = sortedArray
-        tableView.reloadData()
-    }
     
+    // Doing logic depending on the segue identifier.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toAppliedArtists" {
@@ -254,6 +238,19 @@ class SearchTableViewController: UITableViewController{
             detailsView?.localPost = selectedPost
         }
     }
+    
+    func getArtists(){
+        
+        // Database needs to be refactored separating Artists and Venues.
+        ref.child("users").observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let data = snapshot.value as? [String:Any] {
+                
+                
+                
+            }
+        }
+    }
 }
 
 // Search Controller extension
@@ -263,9 +260,12 @@ extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdatin
         if currentUser.artist == "true" {
             switch selectedScope {
             case 0 :
+                
+                // Change array instead of redoing the distance.
                 sortPosts()
-            case 1 :
-                let sortedArray = posts.sorted(by: {$0.genre < $1.genre})
+            case 1:
+                // Create another array to hold the posts sorted by genre then chekc if it is empty or not here so that the sort happens once.
+                sortedArray = posts.sorted(by: {$0.genre.caseInsensitiveCompare($1.genre) == .orderedAscending})
                 posts = sortedArray
                 tableView.reloadData()
             default:
@@ -278,20 +278,20 @@ extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdatin
             case 0 :
                 print("Venue 0")
             case 1 :
-                print("Venue 1")
+                getArtists()
             default:
                 print("selected venue Scope out of range.")
             }
         }
     }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
 }
 
 // Location Manager extension
 extension SearchTableViewController: CLLocationManagerDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         userLoc = locations[0]

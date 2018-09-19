@@ -45,7 +45,7 @@ class AppliedArtistsTableViewController: UITableViewController {
         
         
         cell.fullNameLabel.text = artistArray[indexPath.row].fullName
-        cell.artistImage.image = #imageLiteral(resourceName: "Artist Profile")
+        cell.artistImage.image = #imageLiteral(resourceName: "ArtistProfile")
         cell.emailLabel.text = artistArray[indexPath.row].email
         
         let city = artistArray[indexPath.row].location.split(separator: ",")
