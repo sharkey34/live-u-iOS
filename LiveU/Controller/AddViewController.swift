@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class AddViewController: UIViewController {
     @IBOutlet var textFieldCollection: [UITextField]!
@@ -17,7 +18,9 @@ class AddViewController: UIViewController {
     private var postDate: String!
     private var datePicker = UIDatePicker()
     private var fullAddress: String!
+    private var geocoder = CLGeocoder()
     
+    @IBOutlet weak var postButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -58,6 +61,7 @@ class AddViewController: UIViewController {
         gradiantLayer.frame = view.frame
         
         view.layer.insertSublayer(gradiantLayer, at: 0)
+        postButton.layer.cornerRadius = 15
     }
     
     // Post tectField validation.
@@ -82,22 +86,37 @@ class AddViewController: UIViewController {
         if valid {
             currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
             fullAddress = textFieldCollection[4].text! + " " + textFieldCollection[5].text! + " " + textFieldCollection[6].text!
-            //TODO: Add completion block to display a message to the user when info is saved corrrectly.
-            // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
-            let key = ref.child("posts").childByAutoId().key
-            let postArray = ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress, "creator": currentUser.uid] as [String : Any]
-            let userArray =  ["title": textFieldCollection[0].text!, "genre":textFieldCollection[1].text!,"budget":textFieldCollection[2].text!,"date":postDate, "location":fullAddress] as [String:Any]
-            let childUpdates = ["/posts/\(key)": postArray,
-                                "/users/\(currentUser.uid)/posts/\(key)/": userArray]
-            ref.updateChildValues(childUpdates) {
-                (error:Error?, ref:DatabaseReference) in
-                if let error = error {
-                    print("Data could not be saved: \(error).")
-                } else {
-                    print("Data saved successfully!")
-                    for field in self.textFieldCollection{
-                        field.text = nil
+            
+            self.geocoder.geocodeAddressString(fullAddress) { (placemarks, error) in
+                
+                if let err = error{
+                    
+                    print(err.localizedDescription)
+                }
+                
+                if let placemark = placemarks?.first {
+                    
+                    guard let lat = placemark.location?.coordinate.latitude, let long = placemark.location?.coordinate.longitude else {return}
+                   
+                    //TODO: Add completion block to display a message to the user when info is saved corrrectly.
+                    // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
+                    let key = self.ref.child("posts").childByAutoId().key
+                    let postArray = ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate, "location":self.fullAddress, "creator": self.currentUser.uid, "lat":lat,"long":long] as [String : Any]
+                    let userArray =  ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate, "location":self.fullAddress] as [String:Any]
+                    let childUpdates = ["/posts/\(key)": postArray,
+                                        "/users/\(self.currentUser.uid)/posts/\(key)/": userArray]
+                    self.ref.updateChildValues(childUpdates) {
+                        (error:Error?, ref:DatabaseReference) in
+                        if let error = error {
+                            print("Data could not be saved: \(error).")
+                        } else {
+                            print("Data saved successfully!")
+                            for field in self.textFieldCollection{
+                                field.text = nil
+                            }
+                        }
                     }
+                    
                 }
             }
         } else {

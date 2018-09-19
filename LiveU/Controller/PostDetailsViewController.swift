@@ -15,6 +15,7 @@ class PostDetailsViewController: UIViewController {
     let locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
     
+    @IBOutlet weak var applyButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet var labelCollection: [UILabel]!
     @IBOutlet weak var postImageView: UIImageView!
@@ -50,8 +51,6 @@ class PostDetailsViewController: UIViewController {
         checkLocationServices()
         centerViewOnVenueLocation()
         mapView.delegate = self
-        backgroundView.layer.cornerRadius = 15
-        mapView.layer.cornerRadius = 15
         ref = Database.database().reference()
         postImageView.image = #imageLiteral(resourceName: "VenueProfile")
         labelCollection[0].text = localPost.title
@@ -59,6 +58,9 @@ class PostDetailsViewController: UIViewController {
         labelCollection[2].text = localPost.genre
         labelCollection[3].text = localPost.budget
         labelCollection[4].text = localPost.location
+        backgroundView.layer.cornerRadius = 15
+        mapView.layer.cornerRadius = 15
+        applyButton.layer.cornerRadius = 15
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(launchMaps(sender:)))
         mapView.addGestureRecognizer(gesture)

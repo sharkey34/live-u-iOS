@@ -103,7 +103,7 @@ class LoginViewController: UIViewController {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         ref = Database.database().reference()
-        logInButton.layer.cornerRadius = 0.5
+        logInButton.layer.cornerRadius = 15
         mainBackground.image = #imageLiteral(resourceName: "MainBackground")
         liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
         subscribeUnsubscribe(bool: true)

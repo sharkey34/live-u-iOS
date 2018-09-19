@@ -321,6 +321,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="AddIcon" id="Jis-Z2-ad0"/>
                     <connections>
+                        <outlet property="postButton" destination="5ID-kh-Zh6" id="ith-Jx-P6M"/>
                         <outletCollection property="textFieldCollection" destination="7J4-Ta-NxD" collectionClass="NSMutableArray" id="IQe-aa-cbr"/>
                         <outletCollection property="textFieldCollection" destination="SKu-bj-1g0" collectionClass="NSMutableArray" id="bdR-2t-rgy"/>
                         <outletCollection property="textFieldCollection" destination="pzF-Se-XSv" collectionClass="NSMutableArray" id="dQY-U7-GF9"/>
@@ -634,6 +635,7 @@
                         <viewLayoutGuide key="safeArea" id="8uE-hn-dd9"/>
                     </view>
                     <connections>
+                        <outlet property="applyButton" destination="ntG-Vb-xTj" id="JZH-5L-4lQ"/>
                         <outlet property="backgroundView" destination="KCq-pE-nYl" id="vgF-7N-c9X"/>
                         <outlet property="mapView" destination="eZW-CY-8ns" id="Wlb-PP-p4E"/>
                         <outlet property="postImageView" destination="QSt-fe-uax" id="xrE-As-vQG"/>
@@ -801,6 +803,7 @@
                         <outlet property="passwordExclamation" destination="ldY-jt-VhG" id="gxq-oZ-Es5"/>
                         <outlet property="passwordTextField" destination="wEB-8R-IJi" id="mJ0-Yt-o8K"/>
                         <outlet property="searchDisplayController" destination="W85-Yq-sU8" id="5th-Hm-drf"/>
+                        <outlet property="signUpButton" destination="W82-UV-dZe" id="GQ5-R4-FP8"/>
                         <outlet property="stateExclamation" destination="30E-qv-cuw" id="5ve-kf-ld3"/>
                         <outlet property="stateTextField" destination="7ep-U0-M4x" id="arB-ix-Xcf"/>
                         <outlet property="streetAddressTextField" destination="tHK-EW-4Qe" id="OIL-18-4hc"/>

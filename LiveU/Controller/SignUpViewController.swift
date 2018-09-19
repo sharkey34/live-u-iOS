@@ -28,6 +28,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var stateExclamation: UIImageView!
     @IBOutlet weak var streetAddressTextField: UITextField!
     @IBOutlet weak var streetExclamationPoint: UIImageView!
+    @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,6 +142,7 @@ class SignUpViewController: UIViewController {
     
     func setup(){
         ref = Database.database().reference()
+        signUpButton.layer.cornerRadius = 15
         let gradiantLayer = CAGradientLayer()
         gradiantLayer.colors = [UIColor.white.cgColor, UIColor.lightGray.cgColor]
         gradiantLayer.frame = view.frame
