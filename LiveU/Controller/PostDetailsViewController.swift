@@ -103,14 +103,6 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
-    func getDistance(){
-        
-//        let rgn = MKCoordinateRegionMakeWithDistance(
-//            CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
-//        
-//        let mark = MKPlacemark(coordinate: rgn.center, addressDictionary: nil)
-    }
-    
     @objc func launchMaps(sender: UITapGestureRecognizer){
         
         let rgn = MKCoordinateRegionMakeWithDistance(

@@ -23,6 +23,7 @@ class SearchTableViewController: UITableViewController{
     // Hold users selections
     var selectedPost: Posts?
     var appliedArtist: [String] = []
+//    var searchFiltered: [Posts] = []
     
     // Used specifically for getting the applied users
     var dicArray: [String:[String]] = [:]
@@ -50,24 +51,24 @@ class SearchTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return sortedArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SearchTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
-            if currentUser.artist == "true"{
-                cell.postImageView.image = #imageLiteral(resourceName: "VenueProfile")
-                let d = formatter.string(fromDistance: posts[indexPath.row].distance)
-                cell.cellLabelCollection[1].text = posts[indexPath.row].budget
-                cell.cellLabelCollection[2].text = d
-            } else if currentUser.venue == "true" {
-                cell.postImageView.image = #imageLiteral(resourceName: "ArtistProfile")
-                cell.cellLabelCollection[1].text = posts[indexPath.row].genre
-                cell.cellLabelCollection[2].text = posts[indexPath.row].date
-            }
-            
-            cell.cellLabelCollection[0].text = posts[indexPath.row].title
+        if currentUser.artist == "true"{
+            cell.postImageView.image = #imageLiteral(resourceName: "VenueProfile")
+            let d = formatter.string(fromDistance: sortedArray[indexPath.row].distance)
+            cell.cellLabelCollection[1].text = sortedArray[indexPath.row].budget
+            cell.cellLabelCollection[2].text = d
+        } else if currentUser.venue == "true" {
+            cell.postImageView.image = #imageLiteral(resourceName: "ArtistProfile")
+            cell.cellLabelCollection[1].text = sortedArray[indexPath.row].genre
+            cell.cellLabelCollection[2].text = sortedArray[indexPath.row].date
+        }
+        
+        cell.cellLabelCollection[0].text = sortedArray[indexPath.row].title
         
         
         return cell
@@ -75,13 +76,13 @@ class SearchTableViewController: UITableViewController{
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPost = posts[indexPath.row]
+        selectedPost = sortedArray[indexPath.row]
         
         if currentUser.artist == "true"{
             performSegue(withIdentifier: "gigDetails", sender: self)
         } else if currentUser.venue == "true"{
             
-            let appliedArtistArray = dicArray[posts[indexPath.row].uid]
+            let appliedArtistArray = dicArray[sortedArray[indexPath.row].uid]
             if let arr = appliedArtistArray {
                 appliedArtist = arr
             }
@@ -100,13 +101,9 @@ class SearchTableViewController: UITableViewController{
     }
     
     func setUp(){
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
         checkLocationServices()
         ref = Database.database().reference()
-        setUpSearchController()
-        formatter.units = MKDistanceFormatterUnits.imperial
-        formatter.unitStyle = .full
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        
         if currentUser.artist == "true"{
             artistSetup()
         } else if currentUser.venue == "true"{
@@ -114,6 +111,10 @@ class SearchTableViewController: UITableViewController{
         } else {
             print("Unable to determine UserType")
         }
+        setUpSearchController()
+        formatter.units = MKDistanceFormatterUnits.imperial
+        formatter.unitStyle = .full
+        
     }
     
     func artistSetup(){
@@ -134,6 +135,7 @@ class SearchTableViewController: UITableViewController{
                 
                 self.posts.append(Posts(uid: uid, title: title, genre: genre, budget: budget, date: date, location: location, distance: nil, lat: lat, long:long))
             }
+            self.sortedArray = self.posts
             self.sortPosts()
             self.tableView.reloadData()
         }, withCancel: nil)
@@ -172,6 +174,7 @@ class SearchTableViewController: UITableViewController{
                     })
                 }
             }
+            self.sortedArray = self.posts
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -186,7 +189,6 @@ class SearchTableViewController: UITableViewController{
             post.distance = distance!
         }
         sortedArray = posts.sorted(by: {$0.distance < $1.distance})
-        posts = sortedArray
         tableView.reloadData()
     }
     
@@ -244,11 +246,11 @@ class SearchTableViewController: UITableViewController{
         // Database needs to be refactored separating Artists and Venues.
         ref.child("users").observeSingleEvent(of: .value) { (snapshot) in
             
-            if let data = snapshot.value as? [String:Any] {
-                
-                
-                
-            }
+            //            if let data = snapshot.value as? [String:Any] {
+            //
+            //
+            //
+            //            }
         }
     }
 }
@@ -266,7 +268,6 @@ extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdatin
             case 1:
                 // Create another array to hold the posts sorted by genre then chekc if it is empty or not here so that the sort happens once.
                 sortedArray = posts.sorted(by: {$0.genre.caseInsensitiveCompare($1.genre) == .orderedAscending})
-                posts = sortedArray
                 tableView.reloadData()
             default:
                 print("selected artist Scope out of range.")
@@ -290,7 +291,46 @@ extension SearchTableViewController: UISearchBarDelegate, UISearchResultsUpdatin
 extension SearchTableViewController: CLLocationManagerDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
+        print("woowowowwo")
         
+        let text = searchController.searchBar.text
+        let scopeIndex = searchController.searchBar.selectedScopeButtonIndex
+        let scopes = searchController.searchBar.scopeButtonTitles
+        let selectedScope = scopes![scopeIndex]
+        
+        sortedArray = posts
+        
+        if currentUser.artist == "true"{
+            
+            if selectedScope == "Location" {
+                if text?.isEmpty == false{
+                    sortedArray = posts.filter({$0.title.lowercased().range(of: text!.lowercased()) != nil})
+                    tableView.reloadData()
+                }
+            } else if selectedScope == "Genre" {
+                if text?.isEmpty == false{
+                    sortedArray = posts.filter({$0.genre.lowercased().range(of: text!.lowercased()) != nil})
+                    tableView.reloadData()
+                }
+            }
+            
+            
+        } else if currentUser.venue == "true"{
+            
+            if selectedScope == "My Posts" {
+                if text?.isEmpty == false{
+                    sortedArray = posts.filter({$0.title.lowercased().range(of: text!.lowercased()) != nil})
+                    tableView.reloadData()
+                }
+                
+            } else if selectedScope == "Artists" {
+                if text?.isEmpty == false{
+                    print("ehh ohhh")
+                }
+            }
+        }
+        
+        tableView.reloadData()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
