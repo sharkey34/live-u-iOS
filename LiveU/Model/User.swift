@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class User:  NSObject, NSCoding {
+    
+    // Properties
     var uid: String
     var fullName: String
     var email: String
@@ -22,6 +24,7 @@ class User:  NSObject, NSCoding {
     var posts: [String]!
     var distance: Double!
     
+    // Encoding properties
     func encode(with aCoder: NSCoder) {
         
         aCoder.encode(uid, forKey: "uid")
@@ -38,6 +41,7 @@ class User:  NSObject, NSCoding {
 
     }
     
+    // Decoding intializer
     required init?(coder aDecoder: NSCoder) {
         
         self.uid = (aDecoder.decodeObject(forKey: "uid") as! String)

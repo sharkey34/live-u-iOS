@@ -10,6 +10,7 @@ import Foundation
 
 class Posts {
     
+    // Post properties
     var uid: String
     var title: String
     var genre: String
