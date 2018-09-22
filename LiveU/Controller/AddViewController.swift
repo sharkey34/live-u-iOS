@@ -64,7 +64,7 @@ class AddViewController: UIViewController {
         postButton.layer.cornerRadius = 15
     }
     
-    // Post tectField validation.
+    // Post textField validation.
     func validatePost() -> Bool{
         var validPost = true
         
@@ -81,6 +81,8 @@ class AddViewController: UIViewController {
         return validPost
     }
     
+    
+    // Validating the post entries, geocoding the location and saving the entry to the database.
     @IBAction func postButtonPressed(_ sender: UIButton) {
         let valid = validatePost()
         if valid {

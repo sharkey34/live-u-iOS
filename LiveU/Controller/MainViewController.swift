@@ -15,9 +15,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Adding the login view as a subview.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let logIn = storyboard.instantiateViewController(withIdentifier: "logIn")
-        self.addChildViewController(logIn)
+        self.addChild(logIn)
         view.addSubview(logIn.view)
     }
     

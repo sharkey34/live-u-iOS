@@ -37,6 +37,7 @@ class VenueProfileViewController: UIViewController {
     }
 
     
+    // Setting up view and variables.
     func setup(){
         checkLocationServices()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
@@ -96,13 +97,15 @@ class VenueProfileViewController: UIViewController {
                 // Alert the user
                 return
             }
+            
+            // Setting up the map for the location of the Venue.
             if let placemarks = placemarks?.first {
            
               self.lat = placemarks.location?.coordinate.latitude
               self.long = placemarks.location?.coordinate.longitude
                 // Alert the user
-                let rgn = MKCoordinateRegionMakeWithDistance(
-                    CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+                let rgn = MKCoordinateRegion.init(
+                    center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 350, longitudinalMeters: 350)
                 let venue = MKPointAnnotation()
                 venue.title = self.currentUser.fullName
                 venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)
@@ -112,10 +115,12 @@ class VenueProfileViewController: UIViewController {
         }
     }
     
+    
+    // Launching the Apple maps when the map is selected.
     @objc func launchMaps(sender: UITapGestureRecognizer){
         
-        let rgn = MKCoordinateRegionMakeWithDistance(
-            CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+        let rgn = MKCoordinateRegion.init(
+            center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 350, longitudinalMeters: 350)
         self.mapView.setRegion(rgn, animated: true)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: rgn.center),
@@ -126,8 +131,4 @@ class VenueProfileViewController: UIViewController {
         mapItem.name = currentUser.fullName
         MKMapItem.openMaps(with: [mapItem], launchOptions: options)
     }
-}
-
-extension VenueProfileViewController: MKMapViewDelegate {
-    
 }

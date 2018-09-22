@@ -461,8 +461,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="k4y-OC-Ca0"/>
                     <connections>
-                        <segue destination="IjV-iK-fyo" kind="show" identifier="gigDetails" id="gP7-yq-Cw9"/>
                         <segue destination="s9K-Gl-tBa" kind="show" identifier="toAppliedArtists" id="W1W-Wr-14o"/>
+                        <segue destination="IjV-iK-fyo" kind="show" identifier="gigDetails" id="hpD-b8-Nsd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAy-Oh-pQR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -541,10 +541,10 @@
             </objects>
             <point key="canvasLocation" x="4413.6000000000004" y="1638.5307346326838"/>
         </scene>
-        <!--Post Details View Controller-->
+        <!--postDetails-->
         <scene sceneID="fG6-yi-pdz">
             <objects>
-                <viewController id="IjV-iK-fyo" customClass="PostDetailsViewController" customModule="LiveU" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="postDetails" title="postDetails" id="IjV-iK-fyo" customClass="PostDetailsViewController" customModule="LiveU" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hCl-yf-PFV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

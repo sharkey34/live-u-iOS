@@ -35,11 +35,10 @@ class AppliedArtistsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return artistArray.count
     }
     
-    
+    // Setting the label values for the cell.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AppliedArtistTableViewCell else {return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)}
         
@@ -56,6 +55,7 @@ class AppliedArtistsTableViewController: UITableViewController {
     }
     
     
+    // Getting the applied users and adding to the array.
     func setup(){
         ref = Database.database().reference()
         for user in appliedArtists {

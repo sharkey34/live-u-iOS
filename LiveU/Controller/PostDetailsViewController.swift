@@ -35,8 +35,8 @@ class PostDetailsViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // Saving the post to the user and the user to the post when apply is selected.
     @IBAction func applyButtonSelected(_ sender: UIButton) {
-        // TODO: Save Correctly
         if let currentUser = UserDefaults.standard.currentUser(forKey: "currentUser") {
             ref.child("posts").child(localPost.uid).child("applied").updateChildValues([currentUser.uid: currentUser.fullName])
             ref.child("users").child(currentUser.uid).child("applied").updateChildValues([localPost.uid: localPost.title])
@@ -47,6 +47,8 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
+    
+    // ViewController setup
     func setup(){
         checkLocationServices()
         centerViewOnVenueLocation()
@@ -58,6 +60,8 @@ class PostDetailsViewController: UIViewController {
         labelCollection[2].text = localPost.genre
         labelCollection[3].text = localPost.budget
         labelCollection[4].text = localPost.location
+        
+        
         backgroundView.layer.cornerRadius = 15
         mapView.layer.cornerRadius = 15
         applyButton.layer.cornerRadius = 15
@@ -89,12 +93,13 @@ class PostDetailsViewController: UIViewController {
                 // Alert the user
                 return
             }
+            
+            // setting up the map to display the venue location.
             if let placemarks = placemarks?.first {
-                
                 self.lat = placemarks.location?.coordinate.latitude
                 self.long = placemarks.location?.coordinate.longitude
-                let rgn = MKCoordinateRegionMakeWithDistance(
-                    CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+                let rgn = MKCoordinateRegion.init(
+                    center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 350, longitudinalMeters: 350)
                 let venue = MKPointAnnotation()
                 venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)
                 self.mapView.addAnnotation(venue)
@@ -103,10 +108,11 @@ class PostDetailsViewController: UIViewController {
         }
     }
     
+    // Luanching maps when the map is tapped.
     @objc func launchMaps(sender: UITapGestureRecognizer){
         
-        let rgn = MKCoordinateRegionMakeWithDistance(
-            CLLocationCoordinate2DMake(self.lat!, self.long!), 350, 350)
+        let rgn = MKCoordinateRegion.init(
+            center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 350, longitudinalMeters: 350)
         self.mapView.setRegion(rgn, animated: true)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: rgn.center),

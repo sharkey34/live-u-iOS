@@ -12,7 +12,6 @@ import Foundation
 // Extension to Archive and Unarchive the currentUser
 extension UserDefaults{
     
-    
     func set(currentUser: User, forKey key: String){
         let binaryData = NSKeyedArchiver.archivedData(withRootObject: currentUser)
         self.set(binaryData, forKey: key)

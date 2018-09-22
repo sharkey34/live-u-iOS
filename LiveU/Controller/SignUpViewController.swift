@@ -27,6 +27,8 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup function.
         setup()
     }
     
@@ -36,6 +38,8 @@ class SignUpViewController: UIViewController {
     
     
     // UIButton Actions
+    
+    // Validating entries and saving the user.
     @IBAction func SignUpPressed(_ sender: UIButton) {
         var valid = 3
         var artist = ""
@@ -105,20 +109,21 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    // Removing the signUP view and presenting the log in view.
     @IBAction func CancelPressed(_ sender: UIButton) {
-        
         let superView = parent!
-        self.willMove(toParentViewController: nil)
+        self.willMove(toParent: nil)
         self.view.removeFromSuperview()
-        self.removeFromParentViewController()
+        self.removeFromParent()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let logIn = storyboard.instantiateViewController(withIdentifier: "logIn")
-        superView.addChildViewController(logIn)
+        superView.addChild(logIn)
         superView.view.addSubview(logIn.view)
     }
     
     
+    // Resigning keyboards.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -128,13 +133,13 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     
+    // Set up of the controller.
     func setup(){
         ref = Database.database().reference()
         signUpButton.layer.cornerRadius = 15
@@ -147,6 +152,8 @@ class SignUpViewController: UIViewController {
 
 // UITextField Extension
 extension SignUpViewController: UITextFieldDelegate {
+    
+    // Changing textFields when the user selects return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         

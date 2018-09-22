@@ -20,6 +20,7 @@ class TabViewController: UITabBarController {
         super.didReceiveMemoryWarning()
     }
     
+    // Setup
     func setup(){
         tabBar.items![0].selectedImage = #imageLiteral(resourceName: "ProfileIconSelected")
         tabBar.items![1].selectedImage = #imageLiteral(resourceName: "AddIconSelected")

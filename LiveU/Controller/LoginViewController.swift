@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     private var ref: DatabaseReference!
     var currentUser: User!
     
+    // Outlets
     @IBOutlet weak var mainBackground: UIImageView!
     @IBOutlet weak var liveIcon: UIImageView!
     @IBOutlet weak var logInButton: UIButton!
@@ -22,6 +23,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup method
         setup()
     }
     
@@ -30,8 +33,8 @@ class LoginViewController: UIViewController {
     }
     
     
+    // Checking the if the user is valid, if they are pulling their information and setting currentUser.
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        
         guard let email = emailTextField.text, let password = passwordTextField.text else {return}
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let _ = result{
@@ -62,40 +65,49 @@ class LoginViewController: UIViewController {
                 
             } else {
                 if let err = error{
+                    
+                   let alert = Alert.basicAlert(title: "Invalid", message: err.localizedDescription, Button: "OK")
+                    
+                    self.present(alert, animated: true, completion: nil)
                     print(err.localizedDescription)
                 }
             }
         }
     }
+    
+    // Presenting the sign in controller when the sign in button is pressed.
     @IBAction func signInPressed(_ sender: UIButton) {
         // Removing view from Parent.
         let superView = parent!
-        self.willMove(toParentViewController: nil)
+        self.willMove(toParent: nil)
         self.view.removeFromSuperview()
-        self.removeFromParentViewController()
+        self.removeFromParent()
         
         // Adding subView to MainViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let signUp = storyboard.instantiateViewController(withIdentifier: "signUp")
-        superView.addChildViewController(signUp)
+        superView.addChild(signUp)
         superView.view.addSubview(signUp.view)
         
     }
     
+    // Resigning the keyboards when the view is clicked.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
     }
     
+    // Changing the view height.
     @objc func keyboardChange(note: Notification){
-        if note.name == Notification.Name.UIKeyboardWillHide || note.name == Notification.Name.UIKeyboardDidChangeFrame{
+        if note.name == UIResponder.keyboardWillHideNotification || note.name == UIResponder.keyboardDidChangeFrameNotification{
             view.frame.origin.y = 0
         } else {
             view.frame.origin.y = -100
         }
     }
     
+    // Doing setup
     func setup(){
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -106,18 +118,19 @@ class LoginViewController: UIViewController {
         subscribeUnsubscribe(bool: true)
     }
     
+    // Subscribing and unsubscribing to keyboard observers.
     func subscribeUnsubscribe(bool: Bool){
         if bool == true {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardChange(note:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         } else {
             NotificationCenter.default.removeObserver(self)
         }
     }
 }
 
-// UitextField extension
+// UITextField extension
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.tag {
@@ -132,5 +145,3 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-
-

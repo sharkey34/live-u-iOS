@@ -36,7 +36,7 @@ class ArtistProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    
+    // Setting up profile values.
     func setup(){
         checkLocationServices()
         currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
@@ -54,16 +54,19 @@ class ArtistProfileViewController: UIViewController {
     func checkLocationPermissions(){
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            // logic here
+            // Logic
+            print("ArtistProfileAuthorized")
             break
         case .authorizedAlways:
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
+            print("location Restricted")
             // Let user know about possible parental restrictions
             break
         case . denied:
+            print("location denied")
             // Display alert telling the user to authorize permissions
             break
         }

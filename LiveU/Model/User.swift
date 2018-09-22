@@ -48,8 +48,8 @@ class User:  NSObject, NSCoding {
         self.fullName = (aDecoder.decodeObject(forKey: "fullName") as! String)
         self.email = (aDecoder.decodeObject(forKey: "email") as! String)
         self.about = (aDecoder.decodeObject(forKey: "about") as! String)
-        self.artist = aDecoder.decodeObject(forKey: "artist") as! String
-        self.venue = aDecoder.decodeObject(forKey: "venue") as! String
+        self.artist = aDecoder.decodeObject(forKey: "artist") as? String
+        self.venue = aDecoder.decodeObject(forKey: "venue") as? String
         self.payPal = (aDecoder.decodeObject(forKey: "payPal") as? String)
         self.profileImage = (aDecoder.decodeObject(forKey: "profileImage") as? UIImage)
         self.location = (aDecoder.decodeObject(forKey: "location") as? String)

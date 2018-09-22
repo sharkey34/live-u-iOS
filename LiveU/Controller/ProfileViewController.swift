@@ -24,12 +24,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarItem.image = #imageLiteral(resourceName: "ProfileIcon")
-        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         tabBarItem.image = #imageLiteral(resourceName: "ProfileIconSelected")
-        UIApplication.shared.statusBarStyle = .default
     }
 
     func setup(){
@@ -38,13 +36,13 @@ class ProfileViewController: UIViewController {
             if user.artist == "true"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let artistPro = storyboard.instantiateViewController(withIdentifier: "artistProfile")
-                self.addChildViewController(artistPro)
+                self.addChild(artistPro)
                 self.view.addSubview(artistPro.view)
                 
             } else if user.venue == "true"{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let venuePro = storyboard.instantiateViewController(withIdentifier: "venueProfile")
-                self.addChildViewController(venuePro)
+                self.addChild(venuePro)
                 self.view.addSubview(venuePro.view)
             }
         }
