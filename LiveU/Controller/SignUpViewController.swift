@@ -133,10 +133,11 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        // Change status bar style
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Change status bar style
     }
     
     // Set up of the controller.

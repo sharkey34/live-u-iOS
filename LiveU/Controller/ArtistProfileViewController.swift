@@ -55,7 +55,6 @@ class ArtistProfileViewController: UIViewController {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             // Logic
-            print("ArtistProfileAuthorized")
             break
         case .authorizedAlways:
             break

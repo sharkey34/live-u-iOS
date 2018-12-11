@@ -19,6 +19,7 @@ class SearchTableViewController: UITableViewController{
     private let locationManager = CLLocationManager()
     private let formatter = MKDistanceFormatter()
     private var currentUser: User!
+    var sorted: Bool = false
     
     // Hold users selections
     var selectedPost: Posts?
@@ -55,10 +56,10 @@ class SearchTableViewController: UITableViewController{
 
     }
 
-
     override func viewWillDisappear(_ animated: Bool) {
         posts = []
         tableView.reloadData()
+        sorted = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -207,6 +208,7 @@ class SearchTableViewController: UITableViewController{
 
     // Function getting the distance from the users location and sorting the distances returned.
     func sortPosts(){
+        sorted = true
         for post in posts {
             let postLoc = CLLocation(latitude: post.lat, longitude: post.long)
             let distance = userLoc?.distance(from: postLoc)
@@ -215,9 +217,8 @@ class SearchTableViewController: UITableViewController{
                 post.distance = d
             }
         }
-        print("SortPosts")
+        
         sortedArray = posts.sorted(by: {$0.distance < $1.distance})
-        tableView.reloadData()
     }
 
 
@@ -348,9 +349,11 @@ extension SearchTableViewController: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location did Update")
         userLoc = locations[0]
-        sortPosts()
+        if sorted == false{
+            print("sorted")
+            sortPosts()
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

@@ -15,42 +15,10 @@ iOS 9.0+
 3. Open the LiveU.xcodeproj file.
 4. Run.
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-### And coding style tests
-
-Explain what these tests test and why
-
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * Xcode
 
-## Contributing
-
-
-## Versioning
-
-
 ## Authors
 
 * **Eric Sharkey**
-
-## License
-
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-
-
