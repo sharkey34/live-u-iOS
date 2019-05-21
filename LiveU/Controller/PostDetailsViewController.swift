@@ -59,15 +59,21 @@ class PostDetailsViewController: UIViewController {
         labelCollection[1].text = localPost.date
         labelCollection[2].text = localPost.genre
         labelCollection[3].text = localPost.budget
-        labelCollection[4].text = localPost.location
-        
-        
+        labelCollection[4].text = localPost.location        
         backgroundView.layer.cornerRadius = 15
         mapView.layer.cornerRadius = 15
         applyButton.layer.cornerRadius = 15
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(launchMaps(sender:)))
         mapView.addGestureRecognizer(gesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .default
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     

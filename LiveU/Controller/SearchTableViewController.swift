@@ -44,6 +44,15 @@ class SearchTableViewController: UITableViewController{
         setUp()
     }
     
+    // Controller setup.
+    func setUp(){
+        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
+        checkLocationServices()
+        ref = Database.database().reference()
+        formatter.units = MKDistanceFormatter.Units.imperial
+        formatter.unitStyle = .full
+    }
+    
     // Doing current user setup
     override func viewWillAppear(_ animated: Bool) {
         if currentUser.artist == "true"{
@@ -53,13 +62,14 @@ class SearchTableViewController: UITableViewController{
         } else {
             print("Unable to determine UserType")
         }
-
+        UIApplication.shared.statusBarStyle = .default
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         posts = []
         tableView.reloadData()
         sorted = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,15 +140,6 @@ class SearchTableViewController: UITableViewController{
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-    }
-
-    // Controller setup.
-    func setUp(){
-        currentUser = UserDefaults.standard.currentUser(forKey: "currentUser")
-        checkLocationServices()
-        ref = Database.database().reference()
-        formatter.units = MKDistanceFormatter.Units.imperial
-        formatter.unitStyle = .full
     }
 
     // Getting the posts and appending to the post array.
@@ -366,5 +367,4 @@ extension SearchTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
-    
 }
