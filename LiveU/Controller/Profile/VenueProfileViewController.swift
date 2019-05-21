@@ -70,6 +70,8 @@ class VenueProfileViewController: UIViewController {
         case . denied:
             // Display alert telling the user to authorize permissions
             break
+        @unknown default:
+            print("Unknown Error")
         }
     }
     

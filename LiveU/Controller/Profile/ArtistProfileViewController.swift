@@ -68,6 +68,8 @@ class ArtistProfileViewController: UIViewController {
             print("location denied")
             // Display alert telling the user to authorize permissions
             break
+        @unknown default:
+            print("Unknown Error")
         }
     }
     

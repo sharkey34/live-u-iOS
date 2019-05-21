@@ -103,8 +103,8 @@ class AddViewController: UIViewController {
                     //TODO: Add completion block to display a message to the user when info is saved corrrectly.
                     // Getting the reference key for the post adding the post to posts and the user who created it at the same time.
                     let key = self.ref.child("posts").childByAutoId().key
-                    let postArray = ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate, "location":self.fullAddress, "creator": self.currentUser.uid, "lat":lat,"long":long] as [String : Any]
-                    let userArray =  ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate, "location":self.fullAddress] as [String:Any]
+                    let postArray = ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate!, "location":self.fullAddress!, "creator": self.currentUser.uid, "lat":lat,"long":long] as [String : Any]
+                    let userArray =  ["title": self.textFieldCollection[0].text!, "genre":self.textFieldCollection[1].text!,"budget":self.textFieldCollection[2].text!,"date":self.postDate!, "location":self.fullAddress!] as [String:Any]
                     let childUpdates = ["/posts/\(key)": postArray,
                                         "/users/\(self.currentUser.uid)/posts/\(key)/": userArray]
                     self.ref.updateChildValues(childUpdates) {
