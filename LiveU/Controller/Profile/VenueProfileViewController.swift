@@ -105,7 +105,7 @@ class VenueProfileViewController: UIViewController {
               self.long = placemarks.location?.coordinate.longitude
                 // Alert the user
                 let rgn = MKCoordinateRegion.init(
-                    center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 350, longitudinalMeters: 350)
+                    center: CLLocationCoordinate2DMake(self.lat!, self.long!), latitudinalMeters: 1000, longitudinalMeters: 1000)
                 let venue = MKPointAnnotation()
                 venue.title = self.currentUser.fullName
                 venue.coordinate = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.long!)

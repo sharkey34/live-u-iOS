@@ -32,6 +32,17 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // Doing setup
+    func setup(){
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        ref = Database.database().reference()
+        logInButton.layer.cornerRadius = 15
+        mainBackground.image = #imageLiteral(resourceName: "MainBackground")
+        liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
+        subscribeUnsubscribe(bool: true)
+    }
+    
     
     // Checking the if the user is valid, if they are pulling their information and setting currentUser.
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -67,7 +78,7 @@ class LoginViewController: UIViewController {
                 if let err = error{
                     
                    let alert = Alert.basicAlert(title: "Invalid", message: err.localizedDescription, Button: "OK")
-                    
+                
                     self.present(alert, animated: true, completion: nil)
                     print(err.localizedDescription)
                 }
@@ -105,17 +116,6 @@ class LoginViewController: UIViewController {
         } else {
             view.frame.origin.y = -100
         }
-    }
-    
-    // Doing setup
-    func setup(){
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
-        ref = Database.database().reference()
-        logInButton.layer.cornerRadius = 15
-        mainBackground.image = #imageLiteral(resourceName: "MainBackground")
-        liveIcon.image = #imageLiteral(resourceName: "LiveUIcon")
-        subscribeUnsubscribe(bool: true)
     }
     
     // Subscribing and unsubscribing to keyboard observers.

@@ -69,7 +69,8 @@ class SearchTableViewController: UITableViewController{
 
     // TableView Functions
     override func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.rowHeight = 247
+        tableView.rowHeight =  view.frame.height / 3
+       
         return 1
     }
 

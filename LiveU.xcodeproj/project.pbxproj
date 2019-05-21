@@ -86,23 +86,47 @@
 		4A4192FD2149F54C009ED96B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A5C3CA12221EC7E006DE8B9 /* Utilities */,
+				4A5C3C992221E8DA006DE8B9 /* Login_Signup */,
+				4A5C3C982221E8A3006DE8B9 /* Profile */,
 				4A66399321433EF700914A02 /* MainViewController.swift */,
-				4A663991214335D100914A02 /* VenueProfileViewController.swift */,
-				4A663989214314A700914A02 /* ArtistProfileViewController.swift */,
 				4A419302214C21A8009ED96B /* AppliedArtistsTableViewController.swift */,
 				4A419304214C21D4009ED96B /* AppliedArtistTableViewCell.swift */,
-				4A6F71BA213F66B4009C9B1C /* LoginViewController.swift */,
-				4A6639872141707100914A02 /* SignUpViewController.swift */,
 				4A4192E82146A3E9009ED96B /* TabViewController.swift */,
-				4A4192EE21473D28009ED96B /* ProfileViewController.swift */,
 				4A4192EA2146A9CB009ED96B /* AddViewController.swift */,
 				4A4192F82149A5E5009ED96B /* SearchTableViewController.swift */,
 				4A4192F62149A05C009ED96B /* SearchTableViewCell.swift */,
 				4A4192FE2149FC88009ED96B /* PostDetailsViewController.swift */,
-				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
-				4AC8DAC4214D9A33004FF25D /* AlertStruct.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A5C3C982221E8A3006DE8B9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4A663991214335D100914A02 /* VenueProfileViewController.swift */,
+				4A663989214314A700914A02 /* ArtistProfileViewController.swift */,
+				4A4192EE21473D28009ED96B /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		4A5C3C992221E8DA006DE8B9 /* Login_Signup */ = {
+			isa = PBXGroup;
+			children = (
+				4A6F71BA213F66B4009C9B1C /* LoginViewController.swift */,
+				4A6639872141707100914A02 /* SignUpViewController.swift */,
+			);
+			path = Login_Signup;
+			sourceTree = "<group>";
+		};
+		4A5C3CA12221EC7E006DE8B9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4AC8DAC4214D9A33004FF25D /* AlertStruct.swift */,
+				4A4192EC214705B8009ED96B /* UserDefaultsExtension.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		4A6F71AC213F66B3009C9B1C = {
@@ -189,7 +213,7 @@
 				TargetAttributes = {
 					4A6F71B4213F66B4009C9B1C = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -447,7 +471,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericsharkey.LiveU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -467,7 +491,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ericsharkey.LiveU;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
